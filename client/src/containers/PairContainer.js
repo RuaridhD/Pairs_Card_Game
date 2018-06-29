@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
+import PairsTable from "../components/PairsTable.js"
 
 class PairContainer extends Component {
   render() {
     return(
-      <p>Contianer</p>
+      <div>
+        <p>This is a pairs containers</p>
+      <PairsTable />
+      </div>
     )
   }
 
