@@ -4,15 +4,12 @@ import Tile from "./Tile.js"
 class PairsTable extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cards: [1,2,3]
-    }
     this.handleTileClick = this.handleTileClick.bind(this);
   }
   render() {
 
-    const populatedCards = this.state.cards.map((card, index) => (
-      <Tile key={index} onClickMethod={this.handleTileClick} card={card}/>
+    const populatedCards = this.props.deck.map((card, index) => (
+      <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
     )
   )
 
@@ -25,9 +22,10 @@ class PairsTable extends Component {
 } // end of render
 
 handleTileClick(event) {
+  console.log(this.props.deck);
+  console.log(event.target.value);
 
-  console.log(event.target.id);
-  event.target.innerText = event.target.id;
+  event.target.innerText = this.props.deck[event.target.value].value;
 
 }
 

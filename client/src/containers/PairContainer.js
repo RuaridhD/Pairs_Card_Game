@@ -6,21 +6,20 @@ class PairContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      deck: null
+      deck: []
     }
-
   }
 
   render() {
-    return(
+    return (
       <div>
         <p>This is a pairs containers</p>
-      <PairsTable />
+      <PairsTable deck={this.state.deck} />
       </div>
     )
   }
 
-  componentDidMount(){
+componentDidMount(){
     const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
     fetch(url)
     .then(res => res.json())
