@@ -4,7 +4,13 @@ import Tile from "./Tile.js"
 class PairsTable extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      counter: 0
+    }
     this.handleTileClick = this.handleTileClick.bind(this);
+    this.enableTiles= this.enableTiles.bind(this);
+    this.disableTiles = this.disableTiles.bind(this);
+
   }
   render() {
 
@@ -22,13 +28,36 @@ class PairsTable extends Component {
 } // end of render
 
 handleTileClick(event) {
-  console.log(this.props.deck);
-  console.log(event.target.value);
-
+  var tempCounter = this.state.counter;
+  this.setState({counter: tempCounter += 1});
   event.target.innerText = this.props.deck[event.target.value].value;
-
+  event.target.disabled = true;
+  if (tempCounter === 2){
+    this.disableTiles;
+    setTimeout(this.enableTiles, 2000);
+    this.setState({counter: 0});
+  }
 }
 
-} // end of class
+disableTiles(){
+  const buttons = document.querySelectorAll('.tile-button')
+  buttons.forEach(button => {
+    button.disabled = true;
+  })
+}
+
+enableTiles(){
+  const buttons = document.querySelectorAll('.tile-button')
+  buttons.forEach(button => {
+    button.disabled = false;
+  })
+}
+}
+// changeTilesState(value){
+//   const buttons = document.querySelectorAll('.tile-button')
+//   buttons.forEach(button => {
+//   button.disabled = value ;
+//   })
+// }
 
 export default PairsTable
