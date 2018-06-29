@@ -2,6 +2,15 @@ import React, {Component} from 'react'
 import PairsTable from "../components/PairsTable.js"
 
 class PairContainer extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      deck: null
+    }
+
+  }
+
   render() {
     return(
       <div>
@@ -10,6 +19,15 @@ class PairContainer extends Component {
       </div>
     )
   }
+
+  componentDidMount(){
+    const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
+    fetch(url)
+    .then(res => res.json())
+    .then(Deck => this.setState({deck: Deck.cards}))
+  }
+
+
 
 }
 
