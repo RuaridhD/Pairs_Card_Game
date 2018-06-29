@@ -2,15 +2,26 @@ import React, {Component} from 'react'
 import Tile from "./Tile.js"
 
 class PairsTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cards: [1,2,3]
+    }
+  }
   render() {
-    return(
-      <div>
 
-      <p>Pairs table</p>
-      <Tile />
-      </div>
+    const populatedCards = this.state.cards.map((card) => (
+      <Tile card={card}/>
     )
-  } // end of render
+  )
+
+  return(
+    <div>
+      <p>Pairs table</p>
+      {populatedCards}
+    </div>
+  )
+} // end of render
 
 } // end of class
 
