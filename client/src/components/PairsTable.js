@@ -29,11 +29,14 @@ class PairsTable extends Component {
 
 handleTileClick(event) {
   var tempCounter = this.state.counter;
+
   this.setState({counter: tempCounter += 1});
+
   event.target.innerText = this.props.deck[event.target.value].value;
+
   event.target.disabled = true;
   if (tempCounter === 2){
-    this.disableTiles;
+    this.disableTiles();
     setTimeout(this.enableTiles, 2000);
     this.setState({counter: 0});
   }
@@ -44,6 +47,7 @@ disableTiles(){
   buttons.forEach(button => {
     button.disabled = true;
   })
+
 }
 
 enableTiles(){
