@@ -7,11 +7,12 @@ class PairsTable extends Component {
     this.state = {
       cards: [1,2,3]
     }
+    this.handleTileClick = this.handleTileClick.bind(this);
   }
   render() {
 
-    const populatedCards = this.state.cards.map((card) => (
-      <Tile card={card}/>
+    const populatedCards = this.state.cards.map((card, index) => (
+      <Tile key={index} onClickMethod={this.handleTileClick} card={card}/>
     )
   )
 
@@ -22,6 +23,13 @@ class PairsTable extends Component {
     </div>
   )
 } // end of render
+
+handleTileClick(event) {
+
+  console.log(event.target.id);
+  event.target.innerText = event.target.id;
+
+}
 
 } // end of class
 

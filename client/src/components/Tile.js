@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Tile extends Component {
   render() {
     return(
-      <button>{this.props.card}</button>
+      <button id={this.props.card} onClick={this.props.onClickMethod}></button>
     )
   }
 
