@@ -1,11 +1,12 @@
 import React from 'react'
+import './NavBar.css'
 import {Link} from 'react-router-dom'
 import PairContainer from "../containers/PairContainer";
 
 const NavBar = () => {
   return(
-    <ul>
-      <li>
+    <ul className="NavBar">
+      <li >
         {<Link to="/">Home </Link>}
       </li>
       <li>

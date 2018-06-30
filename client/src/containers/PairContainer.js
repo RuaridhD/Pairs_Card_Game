@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PairsTable from "../components/PairsTable.js"
 
+
 class PairContainer extends Component {
 
   constructor(props) {
@@ -11,10 +12,12 @@ class PairContainer extends Component {
     this.resetGame = this.resetGame.bind(this);
   }
 
+  // removed this <p>This is a pairs containers</p>
+
   render() {
     return (
       <div>
-        <p>This is a pairs containers</p>
+
       <PairsTable deck={this.state.deck} resetMethod={this.resetGame}/>
       </div>
     )
