@@ -11,7 +11,8 @@ class PairsTable extends Component {
       card1Index: null,
       card2Value: null,
       card2Index: null,
-      pairsFound: 0
+      pairsFound: 0,
+      turnsTaken: 0
     }
     this.handleTileClick = this.handleTileClick.bind(this);
     this.enableTiles= this.enableTiles.bind(this);
@@ -56,6 +57,8 @@ handleTileClick(event) {
     this.disableTiles();
     setTimeout(this.checkPairs, 2000);
     this.setState({counter: 0});
+    var turnCounter = this.state.turnsTaken;
+    this.setState({turnsTaken: turnCounter + 1})
   }
 }
 
