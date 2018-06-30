@@ -2,4 +2,7 @@ button.tile-button {
   height: 100px;
   width: 71px;
   margin: 10px;
+  text-color: white;
+  background-image: url("Card.png");
+  background-size: 100% 100%;
 }
