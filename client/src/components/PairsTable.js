@@ -25,7 +25,7 @@ class PairsTable extends Component {
   )
 
   return(
-    <div>
+    <div id="pairs-table">
       <p>Pairs table</p>
       {populatedCards}
     </div>
@@ -42,7 +42,6 @@ handleTileClick(event) {
     this.setState({card1Index: event.target.id})
   }
 
-
   event.target.innerText = this.props.deck[event.target.value].value;
 
   event.target.disabled = true;
@@ -57,7 +56,6 @@ handleTileClick(event) {
 
 checkPairs(){
 
-  console.log("in check pairs");
   const button1 = document.getElementById(this.state.card1Index)
   const button2 = document.getElementById(this.state.card2Index)
 
@@ -70,17 +68,13 @@ checkPairs(){
   button2.innerText = ""
 
   this.enableTiles()
-
 }
-
-
 
 disableTiles(){
   const buttons = document.querySelectorAll('.tile-button')
   buttons.forEach(button => {
     button.disabled = true;
   })
-
 }
 
 enableTiles(){
@@ -90,11 +84,6 @@ enableTiles(){
   })
 }
 }
-// changeTilesState(value){
-//   const buttons = document.querySelectorAll('.tile-button')
-//   buttons.forEach(button => {
-//   button.disabled = value ;
-//   })
-// }
+
 
 export default PairsTable

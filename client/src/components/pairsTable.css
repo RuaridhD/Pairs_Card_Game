@@ -1,0 +1,6 @@
+div#pairs-table {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 100%;
+}
