@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PairContainer from "./containers/PairContainer";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
+import About from './components/About'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
@@ -13,6 +14,7 @@ class App extends Component {
       <React.Fragment>
         <NavBar />
           <Route exact path ='/' component={Home} />
+          <Route path = '/about' component={About} />
         <PairContainer />
 
     </React.Fragment>

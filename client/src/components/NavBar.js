@@ -11,7 +11,7 @@ const NavBar = () => {
         Pairs
       </li>
       <li>
-        About
+        {<Link to="/about"> About </Link>}
       </li>
     </ul>
   ) // end of return
