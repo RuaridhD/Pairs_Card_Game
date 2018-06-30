@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import PairContainer from "../containers/PairContainer";
 
 const NavBar = () => {
   return(
@@ -8,7 +9,7 @@ const NavBar = () => {
         {<Link to="/">Home </Link>}
       </li>
       <li>
-        Pairs
+        {<Link to="/pairs"> Pairs {PairContainer} </Link>}
       </li>
       <li>
         {<Link to="/about"> About </Link>}

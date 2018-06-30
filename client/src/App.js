@@ -15,7 +15,8 @@ class App extends Component {
         <NavBar />
           <Route exact path ='/' component={Home} />
           <Route path = '/about' component={About} />
-        <PairContainer />
+          <Route path = "/pairs" component={PairContainer} />
+
 
     </React.Fragment>
     </Router>
