@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <p>Home Test</p>
+    <p>I'm not really sure what to put here.</p>
   ) // end of return
 } // end of Home
 
