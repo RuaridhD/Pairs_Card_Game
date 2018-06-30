@@ -10,6 +10,7 @@ const About = () => {
       <dd>Play a single player game of Pairs</dd>
       <dd>Query a cards API and display interactive cards</dd>
     </dl>
+
     <dl className="extensions">
       <dt>Extensions</dt>
       <dd>Create a two player game</dd>
@@ -17,6 +18,17 @@ const About = () => {
       <dd>Track and display previous moves</dd>
       <dd>Track game history</dd>
     </dl>
+
+    <dl className="Contributors">
+    <dt>Contributors</dt>
+    <dd>Ruaridh Dunbar</dd>
+    <dd>Connor Rose</dd>
+    <dd>Brian Cooke</dd>
+    <dd>Daniel Childs</dd>
+    </dl>
+
+
+
   </div>
   ) // end of return
 } // end of About
