@@ -4,7 +4,7 @@
   list-style-type: none;
 }
 
-li {
+.NavBar-li {
   display: inline;
   float: left;
   width: 20%;

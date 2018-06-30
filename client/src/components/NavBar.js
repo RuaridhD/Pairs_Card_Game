@@ -6,13 +6,13 @@ import PairContainer from "../containers/PairContainer";
 const NavBar = () => {
   return(
     <ul className="NavBar">
-      <li >
+      <li className="NavBar-li" >
         {<Link to="/">Home </Link>}
       </li>
-      <li>
+      <li className="NavBar-li">
         {<Link to="/pairs"> Pairs {PairContainer} </Link>}
       </li>
-      <li>
+      <li className="NavBar-li">
         {<Link to="/about"> About </Link>}
       </li>
     </ul>
