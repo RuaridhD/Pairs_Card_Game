@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Tile from "./Tile.js"
+const cardImage = require("./Card.png")
 
 class PairsTable extends Component {
   constructor(props) {
@@ -42,7 +43,10 @@ handleTileClick(event) {
     this.setState({card1Index: event.target.id})
   }
 
-  event.target.innerText = this.props.deck[event.target.value].value;
+  // button1.style.backgroundImage = "url('Card.png')"#
+  // event.target.innerText = this.props.deck[event.target.value].value;
+  const image = this.props.deck[event.target.value].image;
+  event.target.style.backgroundImage = `url(${image})`;
 
   event.target.disabled = true;
   if (tempCounter === 2){
@@ -64,8 +68,10 @@ checkPairs(){
     button2.hidden = true;
   }
 
-  button1.innerText = ""
-  button2.innerText = ""
+  // this.props.deck[this.state.card1Index].image
+
+  button1.style.backgroundImage = `url(${cardImage})`
+  button2.style.backgroundImage = `url(${cardImage})`
 
   this.enableTiles()
 }
