@@ -1,10 +1,12 @@
 import React from 'react'
+import './About.css'
 
 const About = () => {
   return (
-  <div>
-    <p className="project-brief">Create a browser game based on an existing card or dice game. Model the game logic and then display it in the browser for a user to interact with.</p>
-    <p className="title">For this project the team decided to create the classic card game Pairs.</p>
+  <div className="body">
+    <h1>JavaScipt Group Project</h1>
+    <p className="project-brief">Create a browser game based on an existing card or dice game. Model the game logic and then display it in the browser for a user to interact with. For this project the team decided to create the classic card game Pairs.
+    </p>
     <dl className="mvp">
       <dt>MVP</dt>
       <dd>Play a single player game of Pairs</dd>
