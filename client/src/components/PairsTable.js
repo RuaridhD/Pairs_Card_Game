@@ -5,7 +5,8 @@ const cardImage = require("./Card.png")
 class PairsTable extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+
+    const initialState = {
       counter: 0,
       card1Value: null,
       card1Index: null,
@@ -14,14 +15,16 @@ class PairsTable extends Component {
       pairsFound: 0,
       turnsTaken: 0
     }
+
+    this.state = initialState;
     this.handleTileClick = this.handleTileClick.bind(this);
     this.enableTiles= this.enableTiles.bind(this);
     this.disableTiles = this.disableTiles.bind(this);
     this.checkPairs = this.checkPairs.bind(this);
+    this.reset = this.reset.bind(this);
 
   }
   render() {
-
     const populatedCards = this.props.deck.map((card, index) => (
       <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
     )
@@ -30,6 +33,7 @@ class PairsTable extends Component {
   return(
     <div id="pairs-table">
       <p>Pairs table</p>
+      <button onClick={this.reset}>Reset</button>
       {populatedCards}
     </div>
   )
@@ -95,7 +99,21 @@ enableTiles(){
     button.disabled = false;
   })
 }
+
+reset(){
+
+  this.setState({
+      turnsTaken: 0
+  })
+
+  this.props.resetMethod();
+
 }
+
+
+}
+
+
 
 
 export default PairsTable
