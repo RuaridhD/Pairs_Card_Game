@@ -10,7 +10,8 @@ class PairsTable extends Component {
       card1Value: null,
       card1Index: null,
       card2Value: null,
-      card2Index: null
+      card2Index: null,
+      pairsFound: 0
     }
     this.handleTileClick = this.handleTileClick.bind(this);
     this.enableTiles= this.enableTiles.bind(this);
@@ -66,6 +67,8 @@ checkPairs(){
   if(this.state.card1Value === this.state.card2Value){
     button1.hidden = true;
     button2.hidden = true;
+    var pairsCounter = this.state.pairsFound;
+    this.setState({pairsFound: pairsCounter + 1})
   }
 
   // this.props.deck[this.state.card1Index].image
