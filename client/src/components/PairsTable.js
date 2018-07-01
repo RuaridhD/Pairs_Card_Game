@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import Tile from "./Tile.js"
+import './pairsTable.css'
 const cardImage = require("./Card.png")
+
 
 class PairsTable extends Component {
   constructor(props) {
@@ -22,6 +24,7 @@ class PairsTable extends Component {
     this.disableTiles = this.disableTiles.bind(this);
     this.checkPairs = this.checkPairs.bind(this);
     this.reset = this.reset.bind(this);
+    this.showTiles = this.showTiles.bind(this);
 
   }
   render() {
@@ -31,10 +34,11 @@ class PairsTable extends Component {
   )
 
   return(
-    <div id="pairs-table">
-      <p>Pairs table</p>
+    <div id="pairs-table-container">
+      <div id="pairs-table">
+        {populatedCards}
+      </div>
       <button onClick={this.reset}>Reset</button>
-      {populatedCards}
     </div>
   )
 } // end of render
@@ -78,8 +82,6 @@ checkPairs(){
     this.setState({pairsFound: pairsCounter + 1})
   }
 
-  // this.props.deck[this.state.card1Index].image
-
   button1.style.backgroundImage = `url(${cardImage})`
   button2.style.backgroundImage = `url(${cardImage})`
 
@@ -100,14 +102,20 @@ enableTiles(){
   })
 }
 
-reset(){
+showTiles(){
+  const buttons = document.querySelectorAll('.tile-button')
+  buttons.forEach(button => {
+    button.hidden = false;
+  })
+}
 
+reset(){
   this.setState({
-      turnsTaken: 0
+    turnsTaken: 0
   })
 
   this.props.resetMethod();
-
+  this.showTiles();
 }
 
 

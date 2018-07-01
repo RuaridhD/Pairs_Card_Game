@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PairsTable from "../components/PairsTable.js"
+import './pairContainer.css'
 
 class PairContainer extends Component {
 
@@ -13,7 +14,7 @@ class PairContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div id="pair-container">
         <p>This is a pairs containers</p>
       <PairsTable deck={this.state.deck} resetMethod={this.resetGame}/>
       </div>
