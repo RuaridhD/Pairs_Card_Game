@@ -56,8 +56,14 @@ handleTileClick(event) {
 
     setTimeout(this.checkPairs, 1000);
     this.setState({counter: 0});
-    var turnCounter = this.state.turnsTaken;
-    this.setState({turnsTaken: turnCounter + 1})
+
+    const player = this.state.playerTurn
+    var turnCounter = this.state.turnsTaken[player];
+    var duplicateTurnsTaken = this.state.turnsTaken;
+    duplicateTurnsTaken[player] = turnCounter + 1;
+    this.setState({
+      turnsTaken: duplicateTurnsTaken
+    }) //REFACTOR
   }
 }
 
