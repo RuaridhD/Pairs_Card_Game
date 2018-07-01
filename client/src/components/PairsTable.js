@@ -8,6 +8,7 @@ class PairsTable extends Component {
   constructor(props) {
     super(props);
 
+
     this.state = this.returnInitialState();
     this.handleTileClick = this.handleTileClick.bind(this);
     this.enableTiles= this.enableTiles.bind(this);
@@ -15,7 +16,9 @@ class PairsTable extends Component {
     this.checkPairs = this.checkPairs.bind(this);
     this.reset = this.reset.bind(this);
     this.showTiles = this.showTiles.bind(this);
-
+    this.updateCurrentPlayer = this.updateCurrentPlayer.bind(this);
+    this.hideCards = this.hideCards.bind(this);
+    this.flipCards = this.flipCards.bind(this);
   }
 
   returnInitialState(){
@@ -64,12 +67,14 @@ class PairsTable extends Component {
     this.setState({card2Index: event.target.id})
     this.disableTiles();
 
-    setTimeout(this.checkPairs, 1000);
-    this.setState({counter: 0});
-
     this.updateTurnsTaken();
 
-    this.updateCurrentPlayer();
+    setTimeout(this.checkPairs, 1000);
+
+    this.setState({counter: 0});
+
+    // setTimeout(this.updateCurrentPlayer, 2000);
+    // this.updateCurrentPlayer();
   }
 
   updateTurnsTaken(){
@@ -100,26 +105,42 @@ class PairsTable extends Component {
       this.setState({currentPlayerIndex: currentIndex})
     }
     this.setState({pairFlag: false});
-    
+
   }
 
   checkPairs(){
 
-    const button1 = document.getElementById(this.state.card1Index)
-    const button2 = document.getElementById(this.state.card2Index)
+    // const button1 = document.getElementById(this.state.card1Index)
+    // const button2 = document.getElementById(this.state.card2Index)
 
     if(this.state.card1Value === this.state.card2Value){
       this.setState({pairFlag: true});
 
-      button1.hidden = true;
-      button2.hidden = true;
+      setTimeout(this.hideCards, 1000)
 
       this.updatePairsFound()
+    } else {
+      setTimeout(this.flipCards, 1000)
     }
+    // button1.style.backgroundImage = `url(${cardImage})`
+    // button2.style.backgroundImage = `url(${cardImage})`
+    this.updateCurrentPlayer()
+    // this.enableTiles()
+  }
 
+  hideCards() {
+    const button1 = document.getElementById(this.state.card1Index)
+    const button2 = document.getElementById(this.state.card2Index)
+    button1.hidden = true;
+    button2.hidden = true;
+    this.enableTiles()
+  }
+
+  flipCards() {
+    const button1 = document.getElementById(this.state.card1Index)
+    const button2 = document.getElementById(this.state.card2Index)
     button1.style.backgroundImage = `url(${cardImage})`
     button2.style.backgroundImage = `url(${cardImage})`
-
     this.enableTiles()
   }
 
