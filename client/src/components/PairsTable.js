@@ -8,17 +8,9 @@ class PairsTable extends Component {
   constructor(props) {
     super(props);
 
-    const initialState = {
-      counter: 0,
-      card1Value: null,
-      card1Index: null,
-      card2Value: null,
-      card2Index: null,
-      pairsFound: 0,
-      turnsTaken: 0
-    }
+    this.state = this.returnInitialState();
 
-    this.state = initialState;
+
     this.handleTileClick = this.handleTileClick.bind(this);
     this.enableTiles= this.enableTiles.bind(this);
     this.disableTiles = this.disableTiles.bind(this);
@@ -63,7 +55,7 @@ handleTileClick(event) {
     this.setState({card2Value: this.props.deck[event.target.value].value})
     this.setState({card2Index: event.target.id})
     this.disableTiles();
-    setTimeout(this.checkPairs, 2000);
+    setTimeout(this.checkPairs, 1000);
     this.setState({counter: 0});
     var turnCounter = this.state.turnsTaken;
     this.setState({turnsTaken: turnCounter + 1})
@@ -110,12 +102,24 @@ showTiles(){
 }
 
 reset(){
-  this.setState({
-    turnsTaken: 0
-  })
+  this.setState(this.returnInitialState());
 
   this.props.resetMethod();
   this.showTiles();
+}
+
+returnInitialState(){
+
+  return {
+    counter: 0,
+    card1Value: null,
+    card1Index: null,
+    card2Value: null,
+    card2Index: null,
+    pairsFound: 0,
+    turnsTaken: 0
+  }
+
 }
 
 
