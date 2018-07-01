@@ -100,13 +100,7 @@ checkPairs(){
     button1.hidden = true;
     button2.hidden = true;
 
-    const player = this.state.players[this.state.currentPlayerIndex];
-    var pairsCounter = this.state.pairsFound[player];
-    var duplicatePairsFound = this.state.pairsFound;
-    duplicatePairsFound[player] = pairsCounter + 1;
-    this.setState({
-      pairsFound: duplicatePairsFound
-    }) // REFACTOR
+    this.updatePairsFound()
   }
 
   button1.style.backgroundImage = `url(${cardImage})`
@@ -182,6 +176,16 @@ initialiseTurnsTaken(){
     turnsTaken[player] = 0
   })
   return turnsTaken;
+}
+
+updatePairsFound(){
+  const player = this.state.players[this.state.currentPlayerIndex];
+  var pairsCounter = this.state.pairsFound[player];
+  var duplicatePairsFound = this.state.pairsFound;
+  duplicatePairsFound[player] = pairsCounter + 1;
+  this.setState({
+    pairsFound: duplicatePairsFound
+  })
 }
 
 
