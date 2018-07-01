@@ -53,6 +53,7 @@ handleTileClick(event) {
     this.setState({card2Value: this.props.deck[event.target.value].value})
     this.setState({card2Index: event.target.id})
     this.disableTiles();
+
     setTimeout(this.checkPairs, 1000);
     this.setState({counter: 0});
     var turnCounter = this.state.turnsTaken;
@@ -68,8 +69,14 @@ checkPairs(){
   if(this.state.card1Value === this.state.card2Value){
     button1.hidden = true;
     button2.hidden = true;
-    var pairsCounter = this.state.pairsFound;
-    this.setState({pairsFound: pairsCounter + 1})
+
+    const player = this.state.playerTurn
+    var pairsCounter = this.state.pairsFound[player];
+    var duplicatePairsFound = this.state.pairsFound;
+    duplicatePairsFound[player] = pairsCounter + 1;
+    this.setState({
+      pairsFound: duplicatePairsFound
+    }) // REFACTOR
   }
 
   button1.style.backgroundImage = `url(${cardImage})`

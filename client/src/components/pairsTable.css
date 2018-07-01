@@ -9,4 +9,5 @@ div#pairs-table-container {
 div#pairs-table {
     background-color: green;
     min-height: 575px;
+    min-width: 650px;
 }
