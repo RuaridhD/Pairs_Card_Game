@@ -41,6 +41,8 @@ handleTileClick(event) {
   if(tempCounter === 1 ){
     this.setState({card1Value: this.props.deck[event.target.value].value})
     this.setState({card1Index: event.target.id})
+
+    this.setState({pairFlag: false});
   }
 
   // button1.style.backgroundImage = "url('Card.png')"#
@@ -57,13 +59,29 @@ handleTileClick(event) {
     setTimeout(this.checkPairs, 1000);
     this.setState({counter: 0});
 
-    const player = this.state.playerTurn
+
+
+    const player = this.state.players[this.state.currentPlayerIndex]
     var turnCounter = this.state.turnsTaken[player];
     var duplicateTurnsTaken = this.state.turnsTaken;
     duplicateTurnsTaken[player] = turnCounter + 1;
     this.setState({
       turnsTaken: duplicateTurnsTaken
     }) //REFACTOR
+
+
+
+    if(!this.state.pairFlag){
+
+      var currentIndex = this.state.currentPlayerIndex;
+      if((currentIndex + 1) === this.state.players.length){
+        currentIndex = 0
+      }else{
+        currentIndex += 1
+      }
+
+      this.setState({currentPlayerIndex: currentIndex})
+    }
   }
 }
 
@@ -73,10 +91,12 @@ checkPairs(){
   const button2 = document.getElementById(this.state.card2Index)
 
   if(this.state.card1Value === this.state.card2Value){
+    this.setState({pairFlag: true});
+
     button1.hidden = true;
     button2.hidden = true;
 
-    const player = this.state.playerTurn
+    const player = this.state.players[this.state.currentPlayerIndex];
     var pairsCounter = this.state.pairsFound[player];
     var duplicatePairsFound = this.state.pairsFound;
     duplicatePairsFound[player] = pairsCounter + 1;
@@ -114,7 +134,7 @@ showTiles(){
 
 reset(){
   this.setState(this.returnInitialState());
-
+  // I have an inkling this is wrong.
   this.props.resetMethod();
   this.showTiles();
 }
@@ -130,7 +150,8 @@ returnInitialState(){
     pairsFound: this.initialisePairsFound(),
     turnsTaken: this.initialiseTurnsTaken(),
     players: this.props.players,
-    playerTurn: this.props.players[0]
+    currentPlayerIndex: 0,
+    pairFlag: false
   }
 
 }
