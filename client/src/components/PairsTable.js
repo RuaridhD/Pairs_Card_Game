@@ -40,39 +40,45 @@ handleTileClick(event) {
   this.setState({counter: tempCounter += 1});
 
   if(tempCounter === 1 ){
-    this.setState({card1Value: this.props.deck[event.target.value].value})
-    this.setState({card1Index: event.target.id})
-
-    this.setState({pairFlag: false});
+    this.handleFirstClick(event)
   }
 
-  // button1.style.backgroundImage = "url('Card.png')"#
-  // event.target.innerText = this.props.deck[event.target.value].value;
   const image = this.props.deck[event.target.value].image;
   event.target.style.backgroundImage = `url(${image})`;
-
   event.target.disabled = true;
+
   if (tempCounter === 2){
-    this.setState({card2Value: this.props.deck[event.target.value].value})
-    this.setState({card2Index: event.target.id})
-    this.disableTiles();
+    this.handleSecondClick(event)
+  }
+}
 
-    setTimeout(this.checkPairs, 1000);
-    this.setState({counter: 0});
+handleFirstClick(event){
+  this.setState({card1Value: this.props.deck[event.target.value].value})
+  this.setState({card1Index: event.target.id})
 
-    this.updateTurnsTaken();
+  this.setState({pairFlag: false});
+}
 
-    if(!this.state.pairFlag){
+handleSecondClick(event){
+  this.setState({card2Value: this.props.deck[event.target.value].value})
+  this.setState({card2Index: event.target.id})
+  this.disableTiles();
 
-      var currentIndex = this.state.currentPlayerIndex;
-      if((currentIndex + 1) === this.state.players.length){
-        currentIndex = 0
-      }else{
-        currentIndex += 1
-      }
+  setTimeout(this.checkPairs, 1000);
+  this.setState({counter: 0});
 
-      this.setState({currentPlayerIndex: currentIndex})
+  this.updateTurnsTaken();
+
+  if(!this.state.pairFlag){
+
+    var currentIndex = this.state.currentPlayerIndex;
+    if((currentIndex + 1) === this.state.players.length){
+      currentIndex = 0
+    }else{
+      currentIndex += 1
     }
+
+    this.setState({currentPlayerIndex: currentIndex})
   }
 }
 
