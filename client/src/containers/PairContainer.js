@@ -7,7 +7,8 @@ class PairContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      deck: []
+      deck: [],
+      players: ["Player 1", "Player 2", "Player 3"]
     }
     this.resetGame = this.resetGame.bind(this);
   }
@@ -16,7 +17,7 @@ class PairContainer extends Component {
     return (
       <div id="pair-container">
         <p>This is a pairs containers</p>
-      <PairsTable deck={this.state.deck} resetMethod={this.resetGame}/>
+      <PairsTable deck={this.state.deck} resetMethod={this.resetGame} players={this.state.players}/>
       </div>
     )
   }

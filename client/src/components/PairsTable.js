@@ -9,8 +9,6 @@ class PairsTable extends Component {
     super(props);
 
     this.state = this.returnInitialState();
-
-
     this.handleTileClick = this.handleTileClick.bind(this);
     this.enableTiles= this.enableTiles.bind(this);
     this.disableTiles = this.disableTiles.bind(this);
@@ -40,7 +38,7 @@ handleTileClick(event) {
 
   this.setState({counter: tempCounter += 1});
 
-  if(tempCounter ===1 ){
+  if(tempCounter === 1 ){
     this.setState({card1Value: this.props.deck[event.target.value].value})
     this.setState({card1Index: event.target.id})
   }
@@ -116,10 +114,36 @@ returnInitialState(){
     card1Index: null,
     card2Value: null,
     card2Index: null,
-    pairsFound: 0,
-    turnsTaken: 0
+    pairsFound: this.initialisePairsFound(),
+    turnsTaken: this.initialiseTurnsTaken(),
+    players: this.props.players,
+    playerTurn: this.props.players[0]
   }
 
+}
+
+initialisePairsFound() {
+  // create new object
+  const pairsFound = {}
+  //create key for each player in players array,
+  this.props.players.forEach(player => {
+    // pairsFound.merge(player, 0)
+    pairsFound[player] = 0
+  })
+  return pairsFound;
+  console.log(pairsFound);
+  // initialise value to 0
+  // return new obect
+}
+
+initialiseTurnsTaken(){
+  const turnsTaken = {}
+  //create key for each player in players array,
+  this.props.players.forEach(player => {
+    // pairsFound.merge(player, 0)
+    turnsTaken[player] = 0
+  })
+  return turnsTaken;
 }
 
 
