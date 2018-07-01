@@ -34,6 +34,7 @@ class PairsTable extends Component {
 } // end of render
 
 handleTileClick(event) {
+
   var tempCounter = this.state.counter;
 
   this.setState({counter: tempCounter += 1});
@@ -59,17 +60,7 @@ handleTileClick(event) {
     setTimeout(this.checkPairs, 1000);
     this.setState({counter: 0});
 
-
-
-    const player = this.state.players[this.state.currentPlayerIndex]
-    var turnCounter = this.state.turnsTaken[player];
-    var duplicateTurnsTaken = this.state.turnsTaken;
-    duplicateTurnsTaken[player] = turnCounter + 1;
-    this.setState({
-      turnsTaken: duplicateTurnsTaken
-    }) //REFACTOR
-
-
+    this.updateTurnsTaken();
 
     if(!this.state.pairFlag){
 
@@ -83,6 +74,19 @@ handleTileClick(event) {
       this.setState({currentPlayerIndex: currentIndex})
     }
   }
+}
+
+updateTurnsTaken(){
+  const player = this.state.players[this.state.currentPlayerIndex]
+
+  var turnCounter = this.state.turnsTaken[player];
+
+  var duplicateTurnsTaken = this.state.turnsTaken;
+
+  duplicateTurnsTaken[player] = turnCounter + 1;
+  this.setState({
+    turnsTaken: duplicateTurnsTaken
+  })
 }
 
 checkPairs(){
