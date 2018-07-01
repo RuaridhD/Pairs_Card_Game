@@ -16,8 +16,6 @@ class App extends Component {
           <Route exact path ='/' component={Home} />
           <Route path = '/about' component={About} />
           <Route path = "/pairs" component={PairContainer} />
-
-
     </React.Fragment>
     </Router>
 
