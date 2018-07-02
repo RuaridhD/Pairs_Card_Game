@@ -1,8 +1,15 @@
 button.tile-button {
-  height: 75px;
-  width: 52px;
-  margin: 10px;
+  height: 65px;
+  min-height: 65px;
+  width: 50px;
+  min-width: 50px;
+  margin: 7px;
   text-color: white;
   background-image: url("Card.png");
   background-size: 100% 100%;
+}
+
+#tile-div {
+  height: 70px;
+  width: 55px;
 }

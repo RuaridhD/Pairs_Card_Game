@@ -9,20 +9,7 @@ class PairContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      deck: [
-        {
-            "image": "https://deckofcardsapi.com/static/img/KH.png",
-            "value": "8",
-            "suit": "HEARTS",
-            "code": "KH"
-        },
-        {
-            "image": "https://deckofcardsapi.com/static/img/8C.png",
-            "value": "8",
-            "suit": "CLUBS",
-            "code": "8C"
-        }
-    ],
+      deck: [],
       players: []
     }
     this.resetGame = this.resetGame.bind(this);
@@ -48,17 +35,17 @@ class PairContainer extends Component {
   }
 
 componentDidMount(){
-    // const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
-    // fetch(url)
-    // .then(res => res.json())
-    // .then(Deck => this.setState({deck: Deck.cards}))
+    const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
+    fetch(url)
+    .then(res => res.json())
+    .then(Deck => this.setState({deck: Deck.cards}))
   }
 
   resetGame(){
-    // const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
-    // fetch(url)
-    // .then(res => res.json())
-    // .then(Deck => this.setState({deck: Deck.cards}))
+    const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
+    fetch(url)
+    .then(res => res.json())
+    .then(Deck => this.setState({deck: Deck.cards}))
   }
 
   selectPlayers(event){

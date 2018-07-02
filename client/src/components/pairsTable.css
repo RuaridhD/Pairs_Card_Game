@@ -7,7 +7,12 @@ div#pairs-table-container {
 }
 
 div#pairs-table {
-    background-color: green;
-    min-height: 575px;
-    min-width: 650px;
+    background-image: url(./table.jpg);
+    background-size: cover;
+    min-height: 320px;
+    min-width: 725px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: white;
 }
