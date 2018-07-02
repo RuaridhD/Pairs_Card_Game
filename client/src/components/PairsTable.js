@@ -186,7 +186,7 @@ class PairsTable extends Component {
   reset(){
     this.setState(this.returnInitialState());
     this.flipAllCards();
-    this.props.resetMethod();
+    this.props.resetGameSamePlayers();
     this.showTiles();
   }
 
@@ -194,7 +194,15 @@ class PairsTable extends Component {
 
     var renderGame = null;
     // change to 26 at the end of development
-    if (this.state.totalPairsFound === 1) {renderGame = <FinishGame players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>}
+    if (this.state.totalPairsFound === 1) {
+      renderGame =
+        <FinishGame
+          players={this.props.players}
+          pairs={this.state.pairsFound}
+          turns={this.state.turnsTaken}
+          resetGameNewPlayers = {this.props.resetGameNewPlayers}
+          resetGameSamePlayers = {this.reset}
+        />}
    else {
      renderGame = this.props.deck.map((card, index) => (
        <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>

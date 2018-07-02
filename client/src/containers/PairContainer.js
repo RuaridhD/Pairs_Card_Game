@@ -12,7 +12,8 @@ class PairContainer extends Component {
       deck: [],
       players: []
     }
-    this.resetGame = this.resetGame.bind(this);
+    this.resetGameNewPlayers = this.resetGameNewPlayers.bind(this);
+    this.resetGameSamePlayers = this.resetGameSamePlayers.bind(this);
     this.selectPlayers = this.selectPlayers.bind(this);
   }
 
@@ -24,7 +25,7 @@ class PairContainer extends Component {
     if (this.state.players.length === 0){
       gameRender = <PlayersSelector buttonClick={this.selectPlayers}/>
     }else {
-      gameRender = <PairsTable deck={this.state.deck} resetMethod={this.resetGame} players={this.state.players}/>
+      gameRender = <PairsTable deck={this.state.deck} resetGameSamePlayers={this.resetGameSamePlayers} resetGameNewPlayers={this.resetGameNewPlayers} players={this.state.players}/>
     }
 
     return (
@@ -41,7 +42,14 @@ componentDidMount(){
     .then(Deck => this.setState({deck: Deck.cards}))
   }
 
-  resetGame(){
+  resetGameNewPlayers(){
+    const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
+    fetch(url)
+    .then(res => res.json())
+    .then(Deck => this.setState({deck: Deck.cards, players: []}))
+  }
+
+  resetGameSamePlayers(){
     const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
     fetch(url)
     .then(res => res.json())
