@@ -18,6 +18,7 @@ class FinishGame extends Component {
     ))
 
     return (
+<<<<<<< HEAD
       <div id="results-div">
         <div id="table-div">
           <table id="result-table">
@@ -29,6 +30,18 @@ class FinishGame extends Component {
             {tableData}
           </table>
         </div>
+=======
+      <div id="table-div">
+        <table id="result-table">
+          <tr>
+            <th>Player</th>
+            <th>Score</th>
+          </tr>
+          {tableData}
+        </table>
+        <button onClick={this.props.resetGameSamePlayers}>Reset Game - Same Players</button>
+        <button onClick={this.props.resetGameNewPlayers}>Reset Game - New Players</button>
+>>>>>>> 41a1165c673a71a1ed33eec91d799e695c735f66
       </div>
     )
   }// end of render
