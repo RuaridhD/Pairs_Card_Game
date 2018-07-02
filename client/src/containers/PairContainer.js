@@ -13,24 +13,23 @@ class PairContainer extends Component {
       players: []
     }
     this.resetGame = this.resetGame.bind(this);
+    this.selectPlayers = this.selectPlayers.bind(this);
   }
 
   // removed this <p>This is a pairs containers</p>
 
   render() {
 
-    var test = null;
+    var gameRender = null;
     if (this.state.players.length === 0){
-      test = <PlayersSelector/>
+      gameRender = <PlayersSelector buttonClick={this.selectPlayers}/>
     }else {
-      test = <PairsTable deck={this.state.deck} resetMethod={this.resetGame} players={this.state.players}/>
+      gameRender = <PairsTable deck={this.state.deck} resetMethod={this.resetGame} players={this.state.players}/>
     }
 
     return (
-
-
       <div id="pair-container">
-        {test}
+        {gameRender}
       </div>
     )
   }
@@ -49,7 +48,26 @@ componentDidMount(){
     .then(Deck => this.setState({deck: Deck.cards}))
   }
 
+  selectPlayers(event){
 
+      var playerNo = event.target.value;
+      var playersArray = [];
+      switch(playerNo) {
+    case "1":
+        playersArray = ["Player 1"]
+        break;
+    case "2":
+        playersArray = ["Player 1", "Player 2"]
+        break;
+    case "3":
+        playersArray = ["Player 1", "Player 2", "Player 3"]
+        break;
+    case "4":
+        playersArray = ["Player 1", "Player 2", "Player 3", "Player 4"]
+        break;
+}
+        this.setState({players: playersArray})
+  }
 
 }
 
