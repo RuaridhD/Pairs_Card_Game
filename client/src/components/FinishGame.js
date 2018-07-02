@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import './finishGame.css'
 
 class FinishGame extends Component {
   render () {
@@ -7,22 +8,27 @@ class FinishGame extends Component {
 
     const gameStats = this.sortPlayers();
 
+    var counter = 1;
     var tableData = gameStats.map((player, index) => (
       <tr>
+        <td>{index + 1}</td>
         <td>{player[0]}</td>
         <td>{player[1]}</td>
       </tr>
     ))
-    
+
     return (
-      <div id="table-div">
-        <table id="result-table">
-          <tr>
-            <th>Player</th>
-            <th>Score</th>
-          </tr>
-          {tableData}
-        </table>
+      <div id="results-div">
+        <div id="table-div">
+          <table id="result-table">
+            <tr>
+              <th>Position</th>
+              <th>Player</th>
+              <th>Score</th>
+            </tr>
+            {tableData}
+          </table>
+        </div>
       </div>
     )
   }// end of render

@@ -1,7 +1,19 @@
+#results-div {
+  width: 100%;
+}
+
 #result-table {
   color: white;
+  margin: 0 auto;
+}
+
+td {
+    text-align: center;
 }
 
 #table-div {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
