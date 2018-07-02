@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Tile from "./Tile.js"
+import StatsBox from "../components/StatsBox.js"
 import './pairsTable.css'
 const cardImage = require("./Card.png")
 
@@ -7,7 +8,6 @@ const cardImage = require("./Card.png")
 class PairsTable extends Component {
   constructor(props) {
     super(props);
-
 
     this.state = this.returnInitialState();
     this.handleTileClick = this.handleTileClick.bind(this);
@@ -182,9 +182,9 @@ class PairsTable extends Component {
 
   reset(){
     this.setState(this.returnInitialState());
-    // I have an inkling this is wrong.
     this.props.resetMethod();
     this.showTiles();
+    this.flipCards()
   }
 
   initialisePairsFound() {
@@ -222,6 +222,7 @@ class PairsTable extends Component {
       <div id="pairs-table">
         {populatedCards}
       </div>
+      <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
       <button onClick={this.reset}>Reset</button>
     </div>
   )
