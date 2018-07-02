@@ -7,22 +7,18 @@ const cardImage = require("./Card.png")
 class PairsTable extends Component {
   constructor(props) {
     super(props);
-
-
     this.state = this.returnInitialState();
     this.handleTileClick = this.handleTileClick.bind(this);
-    this.enableTiles= this.enableTiles.bind(this);
-    this.disableTiles = this.disableTiles.bind(this);
     this.checkPairs = this.checkPairs.bind(this);
-    this.reset = this.reset.bind(this);
-    this.showTiles = this.showTiles.bind(this);
     this.updateCurrentPlayer = this.updateCurrentPlayer.bind(this);
+    this.makeTilesDisabled = this.makeTilesDisabled.bind(this);
     this.hideCards = this.hideCards.bind(this);
     this.flipCards = this.flipCards.bind(this);
+    this.showTiles = this.showTiles.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   returnInitialState(){
-
     return {
       counter: 0,
       card1Value: null,
@@ -35,7 +31,22 @@ class PairsTable extends Component {
       currentPlayerIndex: 0,
       pairFlag: false
     }
+  }
 
+  initialisePairsFound() {
+    const pairsFound = {}
+    this.props.players.forEach(player => {
+      pairsFound[player] = 0
+    })
+    return pairsFound;
+  }
+
+  initialiseTurnsTaken(){
+    const turnsTaken = {}
+    this.props.players.forEach(player => {
+      turnsTaken[player] = 0
+    })
+    return turnsTaken;
   }
 
   handleTileClick(event) {
@@ -58,74 +69,40 @@ class PairsTable extends Component {
 
   handleFirstClick(event){
     this.setState({card1Value: this.props.deck[event.target.value].value})
-    //
     this.setState({card1Index: event.target.id})
   }
 
   handleSecondClick(event){
     this.setState({card2Value: this.props.deck[event.target.value].value})
     this.setState({card2Index: event.target.id})
-    this.disableTiles();
+    this.makeTilesDisabled(true);
 
     this.updateTurnsTaken();
 
     setTimeout(this.checkPairs, 1000);
 
     this.setState({counter: 0});
-
-    // setTimeout(this.updateCurrentPlayer, 2000);
-    // this.updateCurrentPlayer();
   }
 
   updateTurnsTaken(){
     const player = this.state.players[this.state.currentPlayerIndex]
-
     var turnCounter = this.state.turnsTaken[player];
-
     var duplicateTurnsTaken = this.state.turnsTaken;
-
     duplicateTurnsTaken[player] = turnCounter + 1;
     this.setState({
       turnsTaken: duplicateTurnsTaken
     })
   }
 
-  updateCurrentPlayer(){
-    if(this.state.pairFlag === false){
-      // IF THERE HAS NOT BEEN A PAIR
-
-      var currentIndex = this.state.currentPlayerIndex;
-      if((currentIndex + 1) === this.state.players.length){
-        currentIndex = 0
-      } else
-      {
-        currentIndex += 1
-      }
-
-      this.setState({currentPlayerIndex: currentIndex})
-    }
-    this.setState({pairFlag: false});
-
-  }
-
   checkPairs(){
-
-    // const button1 = document.getElementById(this.state.card1Index)
-    // const button2 = document.getElementById(this.state.card2Index)
-
     if(this.state.card1Value === this.state.card2Value){
       this.setState({pairFlag: true});
-
       setTimeout(this.hideCards, 1000)
-
       this.updatePairsFound()
     } else {
       setTimeout(this.flipCards, 1000)
     }
-    // button1.style.backgroundImage = `url(${cardImage})`
-    // button2.style.backgroundImage = `url(${cardImage})`
     this.updateCurrentPlayer()
-    // this.enableTiles()
   }
 
   hideCards() {
@@ -133,7 +110,17 @@ class PairsTable extends Component {
     const button2 = document.getElementById(this.state.card2Index)
     button1.hidden = true;
     button2.hidden = true;
-    this.enableTiles()
+    this.makeTilesDisabled(false)
+  }
+
+  updatePairsFound(){
+    const player = this.state.players[this.state.currentPlayerIndex];
+    var pairsCounter = this.state.pairsFound[player];
+    var duplicatePairsFound = this.state.pairsFound;
+    duplicatePairsFound[player] = pairsCounter + 1;
+    this.setState({
+      pairsFound: duplicatePairsFound
+    })
   }
 
   flipCards() {
@@ -141,35 +128,34 @@ class PairsTable extends Component {
     const button2 = document.getElementById(this.state.card2Index)
     button1.style.backgroundImage = `url(${cardImage})`
     button2.style.backgroundImage = `url(${cardImage})`
-    this.enableTiles()
+    this.makeTilesDisabled(false)
   }
 
-  updatePairsFound(){
-    const player = this.state.players[this.state.currentPlayerIndex];
-    // PLAYER IS ASSIGNED THE CURRENT PLAYER
-    var pairsCounter = this.state.pairsFound[player];
-    // PAIRSCOUNTER IS ASSIGNED THE CURRENT VALUE OF PAIRS FOUND BY PLAYER
-    var duplicatePairsFound = this.state.pairsFound;
-    // DUPLICATES THE WHOLE PAIRS FOUND OBJECT FROM THE STATE
-    duplicatePairsFound[player] = pairsCounter + 1;
-    // ADDS 1 TO THE CURRENT PLAYERS RECORD OF PAIRS FOUND
-    this.setState({
-      pairsFound: duplicatePairsFound
-    })
-    // SETS THE STATE TO INCLUDE THE NEW VALUES
-  }
-
-  disableTiles(){
+  flipAllCards() {
     const buttons = document.querySelectorAll('.tile-button')
     buttons.forEach(button => {
-      button.disabled = true;
+      button.style.backgroundImage = `url(${cardImage})`
     })
   }
 
-  enableTiles(){
+  updateCurrentPlayer(){
+    if(this.state.pairFlag === false){
+      var currentIndex = this.state.currentPlayerIndex;
+      if((currentIndex + 1) === this.state.players.length){
+        currentIndex = 0
+      } else
+      {
+        currentIndex += 1
+      }
+      this.setState({currentPlayerIndex: currentIndex})
+    }
+    this.setState({pairFlag: false});
+  }
+
+  makeTilesDisabled(value) {
     const buttons = document.querySelectorAll('.tile-button')
     buttons.forEach(button => {
-      button.disabled = false;
+      button.disabled = value;
     })
   }
 
@@ -183,32 +169,9 @@ class PairsTable extends Component {
   reset(){
     this.setState(this.returnInitialState());
     // I have an inkling this is wrong.
+    this.flipAllCards();
     this.props.resetMethod();
     this.showTiles();
-  }
-
-  initialisePairsFound() {
-    // create new object
-    const pairsFound = {}
-    //create key for each player in players array,
-    this.props.players.forEach(player => {
-      // pairsFound.merge(player, 0)
-      pairsFound[player] = 0
-    })
-    return pairsFound;
-    console.log(pairsFound);
-    // initialise value to 0
-    // return new obect
-  }
-
-  initialiseTurnsTaken(){
-    const turnsTaken = {}
-    //create key for each player in players array,
-    this.props.players.forEach(player => {
-      // pairsFound.merge(player, 0)
-      turnsTaken[player] = 0
-    })
-    return turnsTaken;
   }
 
   render() {
@@ -216,7 +179,6 @@ class PairsTable extends Component {
       <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
     )
   )
-
   return(
     <div id="pairs-table-container">
       <div id="pairs-table">
@@ -225,11 +187,6 @@ class PairsTable extends Component {
       <button onClick={this.reset}>Reset</button>
     </div>
   )
-} // end of render
-
 }
-
-
-
-
+}
 export default PairsTable
