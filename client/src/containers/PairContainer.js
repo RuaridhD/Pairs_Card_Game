@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PairsTable from "../components/PairsTable.js"
 import './pairContainer.css'
+import PlayersSelector from '../components/PlayersSelector.js'
 
 
 class PairContainer extends Component {
@@ -9,7 +10,7 @@ class PairContainer extends Component {
     super(props);
     this.state = {
       deck: [],
-      players: ["Player 1", "Player 2", "Player 3"]
+      players: []
     }
     this.resetGame = this.resetGame.bind(this);
   }
@@ -17,10 +18,19 @@ class PairContainer extends Component {
   // removed this <p>This is a pairs containers</p>
 
   render() {
+
+    var test = null;
+    if (this.state.players.length === 0){
+      test = <PlayersSelector/>
+    }else {
+      test = <PairsTable deck={this.state.deck} resetMethod={this.resetGame} players={this.state.players}/>
+    }
+
     return (
+
+
       <div id="pair-container">
-        <p>This is a pairs containers</p>
-      <PairsTable deck={this.state.deck} resetMethod={this.resetGame} players={this.state.players}/>
+        {test}
       </div>
     )
   }
@@ -33,9 +43,6 @@ componentDidMount(){
   }
 
   resetGame(){
-    // this.forceUpdate();
-    console.log("test");
-    // window.location.reload();
     const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
     fetch(url)
     .then(res => res.json())
