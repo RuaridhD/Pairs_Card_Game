@@ -1,7 +1,3 @@
-#results-div {
-  width: 100%;
-}
-
 #result-table {
   color: white;
 }
@@ -15,4 +11,10 @@ td {
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
+}
+
+#finish-game-div{
+  display: flex;
+  flex-direction: column;
 }
