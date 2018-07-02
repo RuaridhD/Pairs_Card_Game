@@ -7,36 +7,39 @@ class FinishGame extends Component {
 
     var gameStats = []
     for (var player in this.props.pairs){
-      console.log(this.props.pairs);
+
       gameStats.push([player, this.props.pairs[player]])
     }
-      gameStats.sort(function(a, b) {
-        return b[1] - a[1];
-      })
+    gameStats.sort(function(a, b) {
+      return b[1] - a[1];
+    })
+console.log(gameStats)
+    var tableData = gameStats.map((player, index) => (
 
-      var tableData = gameStats.map((player, index) => {
-        console.log(gameStats);
-
-        {player[0]}
-
-      
-      })
-
-    return (
-      <div>
-        <table>
-          <tr>
-            <th>Player</th>
-            <th>Score</th>
-          </tr>
+      <tr>
+        <td>{player[0]}</td>
+        <td>{player[1]}</td>
+      </tr>
+    ))
 
 
-        </table>
-  {tableData}
-        </div>
 
-    )
-  }// end of render
+  return (
+    <div>
+      <table>
+        <tr>
+          <th>Player</th>
+          <th>Score</th>
+        </tr>
+
+
+      </table>
+      {tableData}
+
+    </div>
+
+  )
+}// end of render
 
 } // end of class
 
