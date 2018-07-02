@@ -1,6 +1,13 @@
-div#pairs-table {
+div#pairs-table-container {
+  grid-column-start: 2;
+  grid-column-end: span 1;
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
-  height: 100%;
+  flex-wrap: wrap;
+}
+
+div#pairs-table {
+    background-color: green;
+    min-height: 575px;
+    min-width: 650px;
 }

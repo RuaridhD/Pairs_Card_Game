@@ -1,119 +1,194 @@
 import React, {Component} from 'react'
 import Tile from "./Tile.js"
+import StatsBox from "../components/StatsBox.js"
+import './pairsTable.css'
 const cardImage = require("./Card.png")
+
 
 class PairsTable extends Component {
   constructor(props) {
     super(props);
 
-    const initialState = {
+    this.state = this.returnInitialState();
+    this.handleTileClick = this.handleTileClick.bind(this);
+    this.checkPairs = this.checkPairs.bind(this);
+    this.updateCurrentPlayer = this.updateCurrentPlayer.bind(this);
+    this.makeTilesDisabled = this.makeTilesDisabled.bind(this);
+    this.hideCards = this.hideCards.bind(this);
+    this.flipCards = this.flipCards.bind(this);
+    this.showTiles = this.showTiles.bind(this);
+    this.reset = this.reset.bind(this);
+  }
+
+  returnInitialState(){
+    return {
       counter: 0,
       card1Value: null,
       card1Index: null,
       card2Value: null,
       card2Index: null,
-      pairsFound: 0,
-      turnsTaken: 0
+      pairsFound: this.initialisePairsFound(),
+      turnsTaken: this.initialiseTurnsTaken(),
+      players: this.props.players,
+      currentPlayerIndex: 0,
+      pairFlag: false
+    }
+  }
+
+  initialisePairsFound() {
+    const pairsFound = {}
+    this.props.players.forEach(player => {
+      pairsFound[player] = 0
+    })
+    return pairsFound;
+  }
+
+  initialiseTurnsTaken(){
+    const turnsTaken = {}
+    this.props.players.forEach(player => {
+      turnsTaken[player] = 0
+    })
+    return turnsTaken;
+  }
+
+  handleTileClick(event) {
+
+    var tempCounter = this.state.counter;
+    this.setState({counter: tempCounter += 1});
+
+    const image = this.props.deck[event.target.value].image;
+    event.target.style.backgroundImage = `url(${image})`;
+    event.target.disabled = true;
+
+    if(tempCounter === 1 ){
+      this.handleFirstClick(event)
     }
 
-    this.state = initialState;
-    this.handleTileClick = this.handleTileClick.bind(this);
-    this.enableTiles= this.enableTiles.bind(this);
-    this.disableTiles = this.disableTiles.bind(this);
-    this.checkPairs = this.checkPairs.bind(this);
-    this.reset = this.reset.bind(this);
-
+    if (tempCounter === 2){
+      this.handleSecondClick(event)
+    }
   }
+
+  handleFirstClick(event){
+    this.setState({card1Value: this.props.deck[event.target.value].value})
+    this.setState({card1Index: event.target.id})
+  }
+
+  handleSecondClick(event){
+    this.setState({card2Value: this.props.deck[event.target.value].value})
+    this.setState({card2Index: event.target.id})
+    this.makeTilesDisabled(true);
+
+    this.updateTurnsTaken();
+
+    setTimeout(this.checkPairs, 1000);
+
+    this.setState({counter: 0});
+  }
+
+  updateTurnsTaken(){
+    const player = this.state.players[this.state.currentPlayerIndex]
+    var turnCounter = this.state.turnsTaken[player];
+    var duplicateTurnsTaken = this.state.turnsTaken;
+    duplicateTurnsTaken[player] = turnCounter + 1;
+    this.setState({
+      turnsTaken: duplicateTurnsTaken
+    })
+  }
+
+  checkPairs(){
+    if(this.state.card1Value === this.state.card2Value){
+      this.setState({pairFlag: true});
+      setTimeout(this.hideCards, 1000)
+      this.updatePairsFound()
+    } else {
+      setTimeout(this.flipCards, 1000)
+    }
+    this.updateCurrentPlayer()
+  }
+
+  hideCards() {
+    const button1 = document.getElementById(this.state.card1Index)
+    const button2 = document.getElementById(this.state.card2Index)
+    button1.hidden = true;
+    button2.hidden = true;
+    this.makeTilesDisabled(false)
+  }
+
+  updatePairsFound(){
+    const player = this.state.players[this.state.currentPlayerIndex];
+    var pairsCounter = this.state.pairsFound[player];
+    var duplicatePairsFound = this.state.pairsFound;
+    duplicatePairsFound[player] = pairsCounter + 1;
+    this.setState({
+      pairsFound: duplicatePairsFound
+    })
+  }
+
+  flipCards() {
+    const button1 = document.getElementById(this.state.card1Index)
+    const button2 = document.getElementById(this.state.card2Index)
+    button1.style.backgroundImage = `url(${cardImage})`
+    button2.style.backgroundImage = `url(${cardImage})`
+    this.makeTilesDisabled(false)
+  }
+
+  flipAllCards() {
+    const buttons = document.querySelectorAll('.tile-button')
+    buttons.forEach(button => {
+      button.style.backgroundImage = `url(${cardImage})`
+    })
+  }
+
+  updateCurrentPlayer(){
+    if(this.state.pairFlag === false){
+      var currentIndex = this.state.currentPlayerIndex;
+      if((currentIndex + 1) === this.state.players.length){
+        currentIndex = 0
+      } else
+      {
+        currentIndex += 1
+      }
+      this.setState({currentPlayerIndex: currentIndex})
+    }
+    this.setState({pairFlag: false});
+  }
+
+  makeTilesDisabled(value) {
+    const buttons = document.querySelectorAll('.tile-button')
+    buttons.forEach(button => {
+      button.disabled = value;
+    })
+  }
+
+  showTiles(){
+    const buttons = document.querySelectorAll('.tile-button')
+    buttons.forEach(button => {
+      button.hidden = false;
+    })
+  }
+
+  reset(){
+    this.setState(this.returnInitialState());
+    this.flipAllCards();
+    this.props.resetMethod();
+    this.showTiles();
+  }
+
   render() {
     const populatedCards = this.props.deck.map((card, index) => (
       <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
     )
   )
-
   return(
-    <div id="pairs-table">
-      <p>Pairs table</p>
+    <div id="pairs-table-container">
+      <div id="pairs-table">
+        {populatedCards}
+      </div>
+      <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
       <button onClick={this.reset}>Reset</button>
-      {populatedCards}
     </div>
   )
-} // end of render
-
-handleTileClick(event) {
-  var tempCounter = this.state.counter;
-
-  this.setState({counter: tempCounter += 1});
-
-  if(tempCounter ===1 ){
-    this.setState({card1Value: this.props.deck[event.target.value].value})
-    this.setState({card1Index: event.target.id})
-  }
-
-  // button1.style.backgroundImage = "url('Card.png')"#
-  // event.target.innerText = this.props.deck[event.target.value].value;
-  const image = this.props.deck[event.target.value].image;
-  event.target.style.backgroundImage = `url(${image})`;
-
-  event.target.disabled = true;
-  if (tempCounter === 2){
-    this.setState({card2Value: this.props.deck[event.target.value].value})
-    this.setState({card2Index: event.target.id})
-    this.disableTiles();
-    setTimeout(this.checkPairs, 2000);
-    this.setState({counter: 0});
-    var turnCounter = this.state.turnsTaken;
-    this.setState({turnsTaken: turnCounter + 1})
-  }
 }
-
-checkPairs(){
-
-  const button1 = document.getElementById(this.state.card1Index)
-  const button2 = document.getElementById(this.state.card2Index)
-
-  if(this.state.card1Value === this.state.card2Value){
-    button1.hidden = true;
-    button2.hidden = true;
-    var pairsCounter = this.state.pairsFound;
-    this.setState({pairsFound: pairsCounter + 1})
-  }
-
-  // this.props.deck[this.state.card1Index].image
-
-  button1.style.backgroundImage = `url(${cardImage})`
-  button2.style.backgroundImage = `url(${cardImage})`
-
-  this.enableTiles()
 }
-
-disableTiles(){
-  const buttons = document.querySelectorAll('.tile-button')
-  buttons.forEach(button => {
-    button.disabled = true;
-  })
-}
-
-enableTiles(){
-  const buttons = document.querySelectorAll('.tile-button')
-  buttons.forEach(button => {
-    button.disabled = false;
-  })
-}
-
-reset(){
-
-  this.setState({
-      turnsTaken: 0
-  })
-
-  this.props.resetMethod();
-
-}
-
-
-}
-
-
-
-
 export default PairsTable
