@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import Tile from "./Tile.js"
-import StatsBox from "../components/StatsBox.js"
+import StatsBox from "./StatsBox.js"
 import './pairsTable.css'
+import FinishGame from './FinishGame.js'
 const cardImage = require("./Card.png")
 
 
@@ -18,6 +19,7 @@ class PairsTable extends Component {
     this.flipCards = this.flipCards.bind(this);
     this.showTiles = this.showTiles.bind(this);
     this.reset = this.reset.bind(this);
+    this.updateTotalPairs = this.updateTotalPairs.bind(this);
   }
 
   returnInitialState(){
@@ -31,7 +33,8 @@ class PairsTable extends Component {
       turnsTaken: this.initialiseTurnsTaken(),
       players: this.props.players,
       currentPlayerIndex: 0,
-      pairFlag: false
+      pairFlag: false,
+      totalPairsFound: 0
     }
   }
 
@@ -101,10 +104,13 @@ class PairsTable extends Component {
       this.setState({pairFlag: true});
       setTimeout(this.hideCards, 1000)
       this.updatePairsFound()
+      setTimeout(this.updateTotalPairs, 1000)
+
     } else {
       setTimeout(this.flipCards, 1000)
     }
     this.updateCurrentPlayer()
+
   }
 
   hideCards() {
@@ -113,6 +119,7 @@ class PairsTable extends Component {
     button1.hidden = true;
     button2.hidden = true;
     this.makeTilesDisabled(false)
+
   }
 
   updatePairsFound(){
@@ -122,6 +129,14 @@ class PairsTable extends Component {
     duplicatePairsFound[player] = pairsCounter + 1;
     this.setState({
       pairsFound: duplicatePairsFound
+    })
+  }
+
+  updateTotalPairs(){
+    var pairsCounter = this.state.totalPairsFound;
+    pairsCounter += 1;
+    this.setState({
+      totalPairsFound: pairsCounter
     })
   }
 
@@ -176,14 +191,20 @@ class PairsTable extends Component {
   }
 
   render() {
-    const populatedCards = this.props.deck.map((card, index) => (
-      <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
-    )
-  )
+
+    var renderGame = null;
+    if (this.state.totalPairsFound === 1) {renderGame = <FinishGame/>}
+   else {
+     renderGame = this.props.deck.map((card, index) => (
+       <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
+     )
+   )
+   }
+
   return(
     <div id="pairs-table-container">
       <div id="pairs-table">
-        {populatedCards}
+        {renderGame}
       </div>
       <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
       <button onClick={this.reset}>Reset</button>
