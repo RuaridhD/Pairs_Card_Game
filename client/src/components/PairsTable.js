@@ -193,7 +193,8 @@ class PairsTable extends Component {
   render() {
 
     var renderGame = null;
-    if (this.state.totalPairsFound === 1) {renderGame = <FinishGame/>}
+    // change to 26 at the end of development
+    if (this.state.totalPairsFound === 1) {renderGame = <FinishGame players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>}
    else {
      renderGame = this.props.deck.map((card, index) => (
        <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
