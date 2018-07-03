@@ -46,8 +46,7 @@ class PlayerContainer extends Component {
         this.setState({
         players: this.state.players})
 
-
-      // this.state.players.push(player);
+        this.componentDidMount();
 
       // this.setState({players: this.state.players})
     } // end of handleSubmit
