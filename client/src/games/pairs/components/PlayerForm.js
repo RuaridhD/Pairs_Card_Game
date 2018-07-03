@@ -45,7 +45,7 @@ class PlayerForm extends Component {
 
         <div>
           <ul>
-            <li>{existingPlayers}</li>
+            {existingPlayers}
           </ul>
         </div>
       </div>
