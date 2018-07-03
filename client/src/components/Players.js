@@ -4,6 +4,8 @@ const Players = () => {
 
   return (
     <p>Players page</p>
+    <p>Players page</p>
+
   ) // end of retrun
 } // end of players
 
