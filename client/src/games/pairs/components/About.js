@@ -1,6 +1,6 @@
 import React from 'react'
 import Contributors from './Contributors.js'
-import './About.css'
+import './public/About.css'
 
 const About = () => {
   return (

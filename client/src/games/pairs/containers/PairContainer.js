@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PairsTable from "../components/PairsTable.js"
-import './pairContainer.css'
+import './public/pairContainer.css'
 import PlayersSelector from '../components/PlayersSelector.js'
 
 

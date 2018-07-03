@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import './finishGame.css'
+import './public/finishGame.css'
 
 class FinishGame extends Component {
   render () {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './statsBox.css'
+import './public/statsBox.css'
 
 class StatsBox extends Component {
 

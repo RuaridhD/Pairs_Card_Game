@@ -1,5 +1,5 @@
 import React from 'react'
-import './NavBar.css'
+import './public/NavBar.css'
 import {Link} from 'react-router-dom'
 import PairContainer from "../containers/PairContainer";
 import PlayerContainer from "../containers/PlayerContainer";

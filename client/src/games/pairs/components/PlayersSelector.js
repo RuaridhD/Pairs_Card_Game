@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './playersSelector.css'
+import './public/playersSelector.css'
 
 class PlayersSelector extends Component {
   constructor(props) {

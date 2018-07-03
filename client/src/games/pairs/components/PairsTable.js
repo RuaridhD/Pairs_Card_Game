@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import Tile from "./Tile.js"
 import StatsBox from "./StatsBox.js"
-import './pairsTable.css'
-import '../containers/pairContainer.css'
+import './public/pairsTable.css'
+import '../containers/public/pairContainer.css'
 import FinishGame from './FinishGame.js'
-const cardImage = require("./Card.png")
+const cardImage = require("./public/Card.png")
 
 
 class PairsTable extends Component {
