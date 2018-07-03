@@ -90,17 +90,20 @@ class PlayersSelector extends Component {
   }
 
   addPlayerToTable() {
-    const duplicateArray = this.state.activePlayers
-    const dropdown = document.querySelector("#player-dropdown")
-    duplicateArray.push(dropdown.value)
-    this.setState({
-      activePlayers: duplicateArray
-    })
-
+    if(this.state.activePlayers.length !== parseInt(this.state.numberOfPlayers)){
+      const duplicateArray = this.state.activePlayers
+      const dropdown = document.querySelector("#player-dropdown")
+      duplicateArray.push(dropdown.value)
+      this.setState({
+        activePlayers: duplicateArray
+      })
+    }
   }
 
   startButtonClicked() {
-    this.props.startGame(this.state.activePlayers)
+    if(this.state.activePlayers.length === parseInt(this.state.numberOfPlayers)){
+      this.props.startGame(this.state.activePlayers)
+    }
   }
 }
 
