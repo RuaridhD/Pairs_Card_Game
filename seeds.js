@@ -3,8 +3,8 @@ use gamesDB;
 db.users.remove({});
 
 db.users.insert([
-  { Player: "Connor"},
-  { Player: "Daniel"},
-  { Player: "Brian"},
-  { Player: "Ruaridh"}
+  { player: "Connor"},
+  { player: "Daniel"},
+  { player: "Brian"},
+  { player: "Ruaridh"}
 ]);
