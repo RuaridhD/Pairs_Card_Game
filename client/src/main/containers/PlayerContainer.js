@@ -45,10 +45,8 @@ class PlayerContainer extends Component {
       .catch(error => console.error(`Fetch Error =\n`, error))
         this.setState({
         players: this.state.players})
-
         this.componentDidMount();
-
-      // this.setState({players: this.state.players})
+        
     } // end of handleSubmit
 
     render(){
