@@ -15,6 +15,7 @@ class PairContainer extends Component {
     this.resetGameNewPlayers = this.resetGameNewPlayers.bind(this);
     this.resetGameSamePlayers = this.resetGameSamePlayers.bind(this);
     this.selectPlayers = this.selectPlayers.bind(this);
+    this.startGame = this.startGame.bind(this);
   }
 
   // removed this <p>This is a pairs containers</p>
@@ -23,7 +24,7 @@ class PairContainer extends Component {
 
     var gameRender = null;
     if (this.state.players.length === 0){
-      gameRender = <PlayersSelector buttonClick={this.selectPlayers}/>
+      gameRender = <PlayersSelector buttonClick={this.selectPlayers} startGame={this.startGame}/>
     }else {
       gameRender = <PairsTable deck={this.state.deck} resetGameSamePlayers={this.resetGameSamePlayers} resetGameNewPlayers={this.resetGameNewPlayers} players={this.state.players}/>
     }
@@ -35,7 +36,7 @@ class PairContainer extends Component {
     )
   }
 
-componentDidMount(){
+  componentDidMount(){
     const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52";
     fetch(url)
     .then(res => res.json())
@@ -58,23 +59,30 @@ componentDidMount(){
 
   selectPlayers(event){
 
-      var playerNo = event.target.value;
-      var playersArray = [];
-      switch(playerNo) {
-    case "1":
-        playersArray = ["Player 1"]
-        break;
-    case "2":
-        playersArray = ["Player 1", "Player 2"]
-        break;
-    case "3":
-        playersArray = ["Player 1", "Player 2", "Player 3"]
-        break;
-    case "4":
-        playersArray = ["Player 1", "Player 2", "Player 3", "Player 4"]
-        break;
-}
-        this.setState({players: playersArray})
+    var playerNo = event.target.value;
+    var playersArray = [];
+    switch(playerNo) {
+      case "1":
+      playersArray = ["Player 1"]
+      break;
+      case "2":
+      playersArray = ["Player 1", "Player 2"]
+      break;
+      case "3":
+      playersArray = ["Player 1", "Player 2", "Player 3"]
+      break;
+      case "4":
+      playersArray = ["Player 1", "Player 2", "Player 3", "Player 4"]
+      break;
+    }
+    this.setState({players: playersArray})
+  }
+
+
+  startGame(playersArray) {
+    this.setState({
+      players: playersArray
+    })
   }
 
 }

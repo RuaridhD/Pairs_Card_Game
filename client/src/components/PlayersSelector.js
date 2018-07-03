@@ -7,9 +7,12 @@ class PlayersSelector extends Component {
     this.state = {
       numberOfPlayers: null,
       selectorFlag: false,
-      players: []
+      players: [],
+      activePlayers: []
     }
     this.selectNumberOfPlayers = this.selectNumberOfPlayers.bind(this)
+    this.addPlayerToTable = this.addPlayerToTable.bind(this)
+    this.startButtonClicked = this.startButtonClicked.bind(this)
   }
   render() {
 
@@ -17,12 +20,18 @@ class PlayersSelector extends Component {
 
     if (this.state.selectorFlag) {
       const playersList = this.state.players.map(player => (
-        <option value="">{player}</option>
+        <option id={player} value={player}>{player}</option>
+      ))
+
+      const tableList = this.state.activePlayers.map(player => (
+        <tr>
+          <td>{player}</td>
+        </tr>
       ))
 
       renderPlayers =
       <div>
-        <select>
+        <select id="player-dropdown">
           <option hidden selected>Select a player...</option>
           {playersList}
         </select>
@@ -31,13 +40,10 @@ class PlayersSelector extends Component {
           <tr>
             <th>Players</th>
           </tr>
-
-          {/* {this.tablePlayers} */}
-
+          {tableList}
         </table>
-        <button onClick="">Add Player</button>
-        <button onClick="">Start Game</button>
-
+        <button onClick={this.addPlayerToTable}>Add Player</button>
+        <button onClick={this.startButtonClicked}>Start Game</button>
 
       </div>
     } else
@@ -53,8 +59,6 @@ class PlayersSelector extends Component {
         </div>
       </div>
     }
-
-
 
     return(
       <div id="players-selector-container">
@@ -85,10 +89,19 @@ class PlayersSelector extends Component {
     })).then(playersList => this.setState({players: playersArray}))
   }
 
-  tablePlayers() {
+  addPlayerToTable() {
+    const duplicateArray = this.state.activePlayers
+    const dropdown = document.querySelector("#player-dropdown")
+    duplicateArray.push(dropdown.value)
+    this.setState({
+      activePlayers: duplicateArray
+    })
 
   }
 
+  startButtonClicked() {
+    this.props.startGame(this.state.activePlayers)
+  }
 }
 
 export default PlayersSelector;
