@@ -6,7 +6,6 @@ class PlayerContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      player: '',
       players: []
     }
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -29,24 +28,38 @@ class PlayerContainer extends Component {
     }
 
     handleSubmit(event){
-      event.preventDefault()
-      var player = this.state.player.trim()
+      const player = event.player;
       if (!player){
         return
       }
-      this.setState({player: player})
+      const url = 'http://localhost:3001/api/users'
 
+      fetch(url, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({"Player": player})
+      })
+      .then(response => response.json())
+      .catch(error => console.error(`Fetch Error =\n`, error))
+
+      // this.state.players.push(player);
+      //
+      // this.setState({players: this.state.players})
 
     }
-
 
 
 
 
     render(){
-      return (<PlayerForm players={this.state.players}/>)
-    }
+      return (<PlayerForm players={this.state.players} onPlayerSubmit={this.handleSubmit}/>
 
-  }
+      )// end of return
+    } // end of render
+  }  // end of class
+
+
 
   export default PlayerContainer;

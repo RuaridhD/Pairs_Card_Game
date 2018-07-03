@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express();
 const parser = require("body-parser");
+const cors = require('cors');
 
 const port = 3001;
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
+app.use(cors())
 
 const MongoClient = require("mongodb").MongoClient;
 

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/DChilds94/Pairs_Card_Game#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "mongodb": "^3.1.0"
   },
