@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import PairContainer from "./containers/PairContainer";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-import About from './components/About'
+import About from './components/About';
+import Players from './components/Players'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
@@ -14,8 +15,9 @@ class App extends Component {
       <React.Fragment>
         <NavBar />
           <Route exact path ='/' component={Home} />
-          <Route path = '/about' component={About} />
+          <Route path = "/about" component={About} />
           <Route path = "/pairs" component={PairContainer} />
+          <Route path = "/players" component={Players} />
     </React.Fragment>
     </Router>
 
