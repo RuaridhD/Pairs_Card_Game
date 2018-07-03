@@ -19,8 +19,6 @@ class PlayerForm extends Component {
 
   handlePlayerAdd(event) {
     event.preventDefault()
-    // console.log('event target value is: ', event.target.value);
-    // console.log(this.state.player)
     const submittedPlayer = this.state.player;
     this.props.onPlayerSubmit({player: submittedPlayer});
   }
@@ -28,7 +26,6 @@ class PlayerForm extends Component {
 
 
   render(){
-        // console.log(this.props.players);
 
     let existingPlayers = this.props.players.map(player => (
       <li key = {player._id}>
