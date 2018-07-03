@@ -5,19 +5,21 @@ import PairContainer from "../containers/PairContainer";
 import PlayerContainer from "../containers/PlayerContainer";
 
 const NavBar = () => {
+
+
   return(
     <ul className="NavBar">
       <li className="NavBar-li" >
         {<Link to="/">Home </Link>}
       </li>
       <li className="NavBar-li">
-        {<Link to="/pairs"> Pairs {PairContainer} </Link>}
+        {<Link to="/pairs"> Pairs </Link>}
       </li>
       <li className="NavBar-li">
         {<Link to="/about"> About </Link>}
       </li>
       <li className="NavBar-li"></li>
-      {<Link to="/players"> Players {PlayerContainer} </Link>}
+      {<Link to="/players"> Players</Link>}
     </ul>
   ) // end of return
 } // end of NavBar

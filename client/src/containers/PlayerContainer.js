@@ -43,15 +43,14 @@ class PlayerContainer extends Component {
       })
       .then(response => response.json())
       .catch(error => console.error(`Fetch Error =\n`, error))
+        this.setState({
+        players: this.state.players})
+
 
       // this.state.players.push(player);
-      //
+
       // this.setState({players: this.state.players})
-
-    }
-
-
-
+    } // end of handleSubmit
 
     render(){
       return (<PlayerForm players={this.state.players} onPlayerSubmit={this.handleSubmit}/>
