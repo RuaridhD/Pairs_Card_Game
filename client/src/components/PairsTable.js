@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Tile from "./Tile.js"
 import StatsBox from "./StatsBox.js"
 import './pairsTable.css'
+import '../containers/pairContainer.css'
 import FinishGame from './FinishGame.js'
 const cardImage = require("./Card.png")
 
@@ -212,11 +213,15 @@ class PairsTable extends Component {
 
   return(
     <div id="pairs-table-container">
+      <div id="container-one">
+      <button onClick={this.reset}>Reset</button>
+      </div>
       <div id="pairs-table">
         {renderGame}
       </div>
+      <div id="stats-box-div">
       <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
-      <button onClick={this.reset}>Reset</button>
+      </div>
     </div>
   )
 }

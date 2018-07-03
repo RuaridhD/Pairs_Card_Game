@@ -1,5 +1,5 @@
-div#pair-container {
-  display: grid;
-  grid-template-columns: 0.75fr 1.6fr 0.75fr;
-  width: 100%;
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+
+html {
+  font-family: 'Quicksand', sans-serif;
 }
