@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import PlayerForm from '../components/PlayerForm.js'
+import PlayerForm from '../../games/pairs/components/PlayerForm.js'
 
 class PlayerContainer extends Component {
 

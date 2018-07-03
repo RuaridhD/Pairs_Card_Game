@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-import PairContainer from "./containers/PairContainer";
-import PlayerContainer from "./containers/PlayerContainer";
-import NavBar from "./components/NavBar";
-import Home from "./components/Home";
-import About from './components/About';
-import PlayerForm from './components/PlayerForm'
+import PairContainer from "./games/pairs/containers/PairContainer";
+import PlayerContainer from "./main/containers/PlayerContainer";
+import NavBar from "./main/components/NavBar";
+import Home from "./main/components/Home";
+import About from './main/components/About';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 

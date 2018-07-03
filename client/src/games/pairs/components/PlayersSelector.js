@@ -38,7 +38,7 @@ class PlayersSelector extends Component {
 
   addPlayerToTable() {
     const dropdown = document.querySelector("#player-dropdown")
-    if((this.state.activePlayers.length !== parseInt(this.state.numberOfPlayers))&&(dropdown.value !== "$default$")){
+    if((this.state.activePlayers.length !== parseInt(this.state.numberOfPlayers, 10))&&(dropdown.value !== "$default$")){
       const duplicateArray = this.state.activePlayers
       duplicateArray.push(dropdown.value)
       this.setState({
@@ -48,7 +48,7 @@ class PlayersSelector extends Component {
   }
 
   startButtonClicked() {
-    if(this.state.activePlayers.length === parseInt(this.state.numberOfPlayers)){
+    if(this.state.activePlayers.length === parseInt(this.state.numberOfPlayers, 10)){
       this.props.startGame(this.state.activePlayers)
     }
   }

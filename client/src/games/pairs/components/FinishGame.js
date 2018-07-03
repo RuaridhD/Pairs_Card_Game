@@ -8,7 +8,6 @@ class FinishGame extends Component {
 
     const gameStats = this.sortPlayers();
 
-    var counter = 1;
     var tableData = gameStats.map((player, index) => (
       <tr>
         <td class={"position" + index}>{index + 1 + '.'}</td>
@@ -22,11 +21,6 @@ class FinishGame extends Component {
       <div id="finish-game-div">
       <div id="table-div">
         <table id="result-table">
-          {/* <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr> */}
           {tableData}
         </table>
         </div>
