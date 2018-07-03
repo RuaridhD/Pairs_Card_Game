@@ -18,8 +18,6 @@ class PairContainer extends Component {
     this.startGame = this.startGame.bind(this);
   }
 
-  // removed this <p>This is a pairs containers</p>
-
   render() {
 
     var gameRender = null;

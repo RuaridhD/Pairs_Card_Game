@@ -4,13 +4,13 @@
   margin-top: 20px;
   background-color: darkgreen;
   color: white;
+  min-height: 500px;
+  min-width: 725px;
 }
 
 #players-selector-div {
   grid-column-start: 2;
   grid-column-end: span 1;
-  min-height: 500px;
-  min-width: 725px;
   text-align: center;
   padding-top: 35px;
   padding-left: 15px;

@@ -3,6 +3,8 @@
   grid-template-columns: 0.7fr 1.6fr 0.7fr;
   margin-top: 20px;
   background-color: darkgreen;
+  min-height: 500px;
+  min-width: 725px;
 }
 
 #stats-box-div {
@@ -19,13 +21,12 @@
   grid-column-end: span 1;
   /* background-image: url(./table2.jpg);
   background-size: cover; */
-  min-height: 500px;
   min-width: 725px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-content: space-evenly;
   color: white;
-  padding-top: 35px;
   padding-left: 15px;
   padding-right: 10px;
 }
