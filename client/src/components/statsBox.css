@@ -1,3 +1,12 @@
-p{
+#stats-box {
+  color: white;
+}
 
+#stats-heading {
+  text-align: center;
+  color: white;
+}
+
+.stats-table-heading {
+  color: white;
 }

@@ -11,9 +11,9 @@ class FinishGame extends Component {
     var counter = 1;
     var tableData = gameStats.map((player, index) => (
       <tr>
-        <td>{index + 1}</td>
-        <td>{player[0]}</td>
-        <td>{player[1]}</td>
+        <td class={"position" + index}>{index + 1 + '.'}</td>
+        <td class={"position" + index}>{player[0]}</td>
+        <td class={"position" + index}>{player[1]}</td>
       </tr>
     ))
 
@@ -22,18 +22,18 @@ class FinishGame extends Component {
       <div id="finish-game-div">
       <div id="table-div">
         <table id="result-table">
-          <tr>
-            <th>Position</th>
-            <th>Player</th>
-            <th>Score</th>
-          </tr>
+          {/* <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr> */}
           {tableData}
         </table>
         </div>
 
         <div id ="button-div">
-        <button onClick={this.props.resetGameSamePlayers}>Reset Game - Same Players</button>
-        <button onClick={this.props.resetGameNewPlayers}>Reset Game - New Players</button>
+        <button class="reset-button" onClick={this.props.resetGameSamePlayers}>Play Again</button>
+        <button class="reset-button" onClick={this.props.resetGameNewPlayers}>New Game</button>
       </div>
 
       </div>
