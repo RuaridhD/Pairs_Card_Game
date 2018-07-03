@@ -221,8 +221,8 @@ class PairsTable extends Component {
           <div id="container-left-elements">
             <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
             <div id="reset-button-div">
-              <button class="reset-button" onClick={this.reset}>Reset Game</button>
-              <button class="reset-button" onClick={this.props.resetGameNewPlayers}>New Game</button>
+              <button className="reset-button" onClick={this.reset}>Reset Game</button>
+              <button className="reset-button" onClick={this.props.resetGameNewPlayers}>New Game</button>
             </div>
           </div>
         </div>
