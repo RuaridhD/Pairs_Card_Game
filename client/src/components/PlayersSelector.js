@@ -19,9 +19,14 @@ class PlayersSelector extends Component {
     var renderPlayers = null;
 
     if (this.state.selectorFlag) {
-      const playersList = this.state.players.map(player => (
-        <option id={player} value={player}>{player}</option>
-      ))
+
+      const playersList = this.state.players.map(player => {
+        if(this.state.activePlayers.includes(player)){
+          return <option id={player} value={player} disabled>{player}</option>
+        }else {
+          return <option id={player} value={player}>{player}</option>
+        }
+      })
 
       const tableList = this.state.activePlayers.map(player => (
         <tr>
@@ -32,9 +37,11 @@ class PlayersSelector extends Component {
       renderPlayers =
       <div>
         <select id="player-dropdown">
-          <option hidden selected>Select a player...</option>
+          <option hidden disabled selected value="$default$">Select a player...</option>
           {playersList}
         </select>
+
+
 
         <table>
           <tr>
@@ -90,9 +97,9 @@ class PlayersSelector extends Component {
   }
 
   addPlayerToTable() {
-    if(this.state.activePlayers.length !== parseInt(this.state.numberOfPlayers)){
+    const dropdown = document.querySelector("#player-dropdown")
+    if((this.state.activePlayers.length !== parseInt(this.state.numberOfPlayers))&&(dropdown.value !== "$default$")){
       const duplicateArray = this.state.activePlayers
-      const dropdown = document.querySelector("#player-dropdown")
       duplicateArray.push(dropdown.value)
       this.setState({
         activePlayers: duplicateArray
