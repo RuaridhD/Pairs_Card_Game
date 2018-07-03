@@ -2,6 +2,7 @@ import React from 'react'
 import './NavBar.css'
 import {Link} from 'react-router-dom'
 import PairContainer from "../containers/PairContainer";
+import PlayerContainer from "../containers/PlayerContainer";
 
 const NavBar = () => {
   return(
@@ -16,7 +17,7 @@ const NavBar = () => {
         {<Link to="/about"> About </Link>}
       </li>
       <li className="NavBar-li"></li>
-      {<Link to="/players"> Players </Link>}
+      {<Link to="/players"> Players {PlayerContainer} </Link>}
     </ul>
   ) // end of return
 } // end of NavBar
