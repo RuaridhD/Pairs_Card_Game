@@ -31,9 +31,9 @@ class FinishGame extends Component {
         </table>
         </div>
 
-        <div id ="button-div">
-        <button class="reset-button" onClick={this.props.resetGameSamePlayers}>Play Again</button>
-        <button class="reset-button" onClick={this.props.resetGameNewPlayers}>New Game</button>
+        <div id ="new-game-button-div">
+        <button class="new-game-button" onClick={this.props.resetGameSamePlayers}>Play Again</button>
+        <button class="new-game-button" onClick={this.props.resetGameNewPlayers}>New Game</button>
       </div>
 
       </div>

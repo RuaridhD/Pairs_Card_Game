@@ -8,7 +8,7 @@
   min-width: 725px;
 }
 
-#players-selector-div {
+.players-selector-div {
   grid-column-start: 2;
   grid-column-end: span 1;
   text-align: center;

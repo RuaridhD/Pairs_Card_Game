@@ -18,13 +18,13 @@
   width: 100%;
 }
 
-#button-div {
+#new-game-button-div {
   justify-content: space-evenly;
   display: flex;
   padding-bottom: 40px;
 }
 
-.reset-button {
+.new-game-button {
   font-family: 'Quicksand', sans-serif;
   height: 100px;
   width: 150px;

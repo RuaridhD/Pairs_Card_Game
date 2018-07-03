@@ -106,7 +106,6 @@ class PairsTable extends Component {
       setTimeout(this.hideCards, 1000)
       this.updatePairsFound()
       setTimeout(this.updateTotalPairs, 1000)
-
     } else {
       setTimeout(this.flipCards, 1000)
     }
@@ -171,6 +170,11 @@ class PairsTable extends Component {
   }
 
   makeTilesDisabled(value) {
+    const reset = document.querySelectorAll('.reset-button')
+    reset.forEach(button => {
+      button.disabled = value;
+    })
+
     const buttons = document.querySelectorAll('.tile-button')
     buttons.forEach(button => {
       button.disabled = value;
@@ -197,33 +201,39 @@ class PairsTable extends Component {
     // change to 26 at the end of development
     if (this.state.totalPairsFound === 1) {
       renderGame =
-        <FinishGame
-          players={this.props.players}
-          pairs={this.state.pairsFound}
-          turns={this.state.turnsTaken}
-          resetGameNewPlayers = {this.props.resetGameNewPlayers}
-          resetGameSamePlayers = {this.reset}
-        />}
-   else {
-     renderGame = this.props.deck.map((card, index) => (
-       <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
-     )
-   )
-   }
+      <FinishGame
+        players={this.props.players}
+        pairs={this.state.pairsFound}
+        turns={this.state.turnsTaken}
+        resetGameNewPlayers = {this.props.resetGameNewPlayers}
+        resetGameSamePlayers = {this.reset}
+      />}
+      else {
+        renderGame = this.props.deck.map((card, index) => (
+          <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
+        )
+      )
+    }
 
-  return(
-    <div id="pairs-table-container">
-      <div id="container-one">
-      <button onClick={this.reset}>Reset</button>
+    return(
+      <div id="pairs-table-container">
+        <div id="container-left">
+          <div id="container-left-elements">
+            <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
+            <div id="reset-button-div">
+              <button class="reset-button" onClick={this.reset}>Reset Game</button>
+              <button class="reset-button" onClick={this.props.resetGameNewPlayers}>New Game</button>
+            </div>
+          </div>
+        </div>
+        <div id="centre-container">
+          {renderGame}
+        </div>
+        <div id="container-right">
+          <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
+        </div>
       </div>
-      <div id="pairs-table">
-        {renderGame}
-      </div>
-      <div id="stats-box-div">
-      <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
-      </div>
-    </div>
-  )
-}
+    )
+  }
 }
 export default PairsTable
