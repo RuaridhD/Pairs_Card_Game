@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import './public/statsBox.css'
+import './PairsTable.js'
 
 class StatsBox extends Component {
 
   render() {
     var playersList = this.props.players.map((player,index) =>(
       <tr>
-        <td>{player}</td>
-        <td>{this.props.turns[player]}</td>
-        <td>{this.props.pairs[player]}</td>
+        <td className="stats-player" value={index}>{player}</td>
+        <td className="stats-player" value={index}>{this.props.turns[player]}</td>
+        <td className="stats-player" value={index}>{this.props.pairs[player]}</td>
       </tr>
     ))
     return (
@@ -16,9 +17,9 @@ class StatsBox extends Component {
         <h3 id="stats-heading">Game Stats</h3>
         <table>
           <tr>
-            <th class="stats-table-heading">Player</th>
-            <th class="stats-table-heading">Turns</th>
-            <th class="stats-table-heading">Pairs</th>
+            <th className="stats-table-heading">Player</th>
+            <th className="stats-table-heading">Turns</th>
+            <th className="stats-table-heading">Pairs</th>
           </tr>
           {playersList}
         </table>

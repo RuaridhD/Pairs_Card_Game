@@ -1,34 +1,96 @@
 #players-selector-container {
   display: grid;
   grid-template-columns: 0.7fr 1.6fr 0.7fr;
-  margin-top: 20px;
   background-color: darkgreen;
   color: white;
-  min-height: 500px;
-  min-width: 725px;
+  min-height: 31.250em;
+  min-width: 45.313em;
 }
 
-.players-selector-div {
+#number-selector-div {
   grid-column-start: 2;
   grid-column-end: span 1;
   text-align: center;
-  padding-top: 35px;
-  padding-left: 15px;
-  padding-right: 10px;
+  padding-top: 2.188em;
+  padding-left: 0.938em;
+  padding-right: 0.625em;
+}
+
+#name-selector-div {
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  text-align: center;
+  padding-top: 2.188em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #players-selector-btns-div {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding-top: 40px;
+  padding-top: 2.5em;
 }
 
 .players-selector-btn {
   font-family: 'Quicksand', sans-serif;
-  height: 100px;
-  width: 150px;
+  height: 5em;
+  width: 7em;
   background-color: white;
-  font-size: 20px;
+  font-size: 1.25em;
   color: darkgreen;
+}
+
+#dropdown-and-buttons {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2em;
+  justify-content: space-evenly;
+}
+
+#players-table-div {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+}
+
+#player-dropdown {
+  height: 4em;
+  width: 14em;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.25em;
+  color: darkgreen;
+}
+
+#player-dropdown-div {
+  padding-bottom: 2em;
+}
+
+.name-selector-btn {
+  font-family: 'Quicksand', sans-serif;
+  height: 5em;
+  width: 7em;
+  background-color: white;
+  font-size: 1.25em;
+  color: darkgreen;
+}
+
+.players-table-heading {
+  font-size: 2em;
+}
+
+.players-table-data {
+  font-size: 1.5em;
+}
+
+#number-heading {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+#start-game-btn {
+  background-color: gold;
 }

@@ -1,15 +1,29 @@
-.NavBar {
-  width: 100%;
-  display: inline;
-  list-style-type: none;
+ul.navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
 }
 
-.NavBar-li {
-  display: inline;
-  float: left;
-  width: 20%;
+ul.navbar-list li {float: left;}
+
+ul.navbar-list li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 2em;
+    text-decoration: none;
 }
 
-li:hover {
-  background-color: rgb(7, 99, 36);
+ul.navbar-list li a:hover:not(.active) {
+  background-color: black;
+  color: white;
+}
+
+@media screen and (max-width: 600px){
+    ul.navbar-list,
+    ul.navbar-list li {float: none;}
 }

@@ -9,5 +9,9 @@
 
 .stats-table-heading {
   color: white;
-  font-size: 20px;
+  font-size: 1.25em;
+}
+
+#player-0, #player-1, #player-2, #player-3{
+  color: gold;
 }

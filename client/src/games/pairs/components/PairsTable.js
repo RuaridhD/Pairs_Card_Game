@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Tile from "./Tile.js"
 import StatsBox from "./StatsBox.js"
 import './public/pairsTable.css'
+import './public/statsBox.css'
 import '../containers/public/pairContainer.css'
 import FinishGame from './FinishGame.js'
 const cardImage = require("./public/Card.png")
@@ -21,6 +22,8 @@ class PairsTable extends Component {
     this.showTiles = this.showTiles.bind(this);
     this.reset = this.reset.bind(this);
     this.updateTotalPairs = this.updateTotalPairs.bind(this);
+    this.hideResetButtons = this.hideResetButtons.bind(this);
+    this.setActivePlayer = this.setActivePlayer.bind(this);
   }
 
   returnInitialState(){
@@ -193,6 +196,31 @@ class PairsTable extends Component {
     this.flipAllCards();
     this.props.resetGameSamePlayers();
     this.showTiles();
+    this.unHideResetButtons();
+  }
+
+  hideResetButtons() {
+    const buttons = document.querySelectorAll(".reset-button")
+    buttons.forEach(button => {
+      button.hidden = true;
+    })
+  }
+
+  unHideResetButtons() {
+    const buttons = document.querySelectorAll(".reset-button")
+    buttons.forEach(button => {
+      button.hidden = false;
+    })
+  }
+
+  setActivePlayer() {
+    const players = document.querySelectorAll(".stats-player")
+    console.log(players);
+    players.forEach(player => {
+      if(player.value === this.state.currentPlayerIndex) {
+        player.setAttribute("id", "player-" + player.value)
+      }
+    })
   }
 
   render() {
@@ -207,33 +235,36 @@ class PairsTable extends Component {
         turns={this.state.turnsTaken}
         resetGameNewPlayers = {this.props.resetGameNewPlayers}
         resetGameSamePlayers = {this.reset}
-      />}
-      else {
-        renderGame = this.props.deck.map((card, index) => (
-          <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
-        )
-      )
+      />
+      {this.hideResetButtons()}
     }
-
-    return(
-      <div id="pairs-table-container">
-        <div id="container-left">
-          <div id="container-left-elements">
-            <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
-            <div id="reset-button-div">
-              <button class="reset-button" onClick={this.reset}>Reset Game</button>
-              <button class="reset-button" onClick={this.props.resetGameNewPlayers}>New Game</button>
-            </div>
-          </div>
-        </div>
-        <div id="centre-container">
-          {renderGame}
-        </div>
-        <div id="container-right">
-          <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
-        </div>
-      </div>
+    else {
+      renderGame = this.props.deck.map((card, index) => (
+        <Tile key={index} onClickMethod={this.handleTileClick} index={index}/>
+      )
     )
   }
+
+  return(
+    <div id="pairs-table-container">
+      <div id="container-table-left">
+        <div id="container-table-left-elements">
+          <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
+          <div id="reset-button-div">
+            <button class="reset-button" onClick={this.reset}>Reset Game</button>
+            <button class="reset-button" onClick={this.props.resetGameNewPlayers}>New Game</button>
+          </div>
+        </div>
+      </div>
+      <div id="container-table-center">
+        {renderGame}
+        {this.setActivePlayer()}
+      </div>
+      <div id="container-table-right">
+        <StatsBox players={this.props.players} pairs={this.state.pairsFound} turns={this.state.turnsTaken}/>
+      </div>
+    </div>
+  )
+}
 }
 export default PairsTable
