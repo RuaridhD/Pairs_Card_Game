@@ -30,7 +30,9 @@ class FinishGame extends Component {
       <div id="finish-game-div">
       <div id="table-div">
         <table id="result-table">
+          <tbody>
           {tableData}
+        </tbody>
         </table>
         </div>
 
