@@ -72,6 +72,7 @@ class PlayerContainer extends Component {
           .then(this.getAllPlayers())
         }
 
+
         render(){
           return (<PlayerForm players={this.state.players} onPlayerSubmit={this.handleSubmit} onPlayerDelete={this.handleDelete}/>
 

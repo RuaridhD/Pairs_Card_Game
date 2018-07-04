@@ -30,6 +30,7 @@ const About = () => {
       <div id="contributors">
 
         <table>
+          <tbody>
           <tr>
             <th>Ruaridh Dunbar</th>
             <th>Connor Rose</th>
@@ -64,6 +65,7 @@ const About = () => {
             <td>LinkedIn Profile</td>
             <td>LinkedIn Profile</td>
           </tr>
+          </tbody>
         </table>
       </div>
 

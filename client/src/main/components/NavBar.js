@@ -13,10 +13,11 @@ const NavBar = () => {
         {<Link to="/pairs"> Pairs </Link>}
       </li>
       <li className="NavBar-li">
+      {<Link to="/players"> Players</Link>}
+      </li>
+      <li className="NavBar-li">
         {<Link to="/about"> About </Link>}
       </li>
-      <li className="NavBar-li"></li>
-      {<Link to="/players"> Players</Link>}
     </ul>
   ) // end of return
 } // end of NavBar
