@@ -10,6 +10,7 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(cors())
 
 const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectID;
 
 MongoClient.connect(
   "mongodb://localhost:27017",
@@ -37,8 +38,23 @@ MongoClient.connect(
       });
     });
 
-    app.listen(port, () => {
-      console.log("App listening on port", port);
+    app.delete('/api/users/delete/:id', (req, res) => {
+      const id = req.params.id;
+      const usersCollection = db.collection("users");
+
+      usersCollection.deleteOne({_id: new ObjectId(id)}, function (err, result) {
+      });
+
+      if(err) {
+        res.status(500);
+        res.send();
+      }
+
+      res.status(204);
+      res.send();
     });
-  }
-);
+  });
+
+  app.listen(port, () => {
+    console.log("App listening on port", port);
+  });
