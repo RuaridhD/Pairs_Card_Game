@@ -1,10 +1,8 @@
 body {
   display: flex;
   flex-direction: column;
-  color: white;
-  text-shadow: 1px 1px #ff0000;
-  background-image: url("https://media.gettyimages.com/photos/shuffling-cards-picture-id184974614?b=1&k=6&m=184974614&s=612x612&w=0&h=fBH0x7joOqNqAQsWiaMHvLqK3OUYZwX04hpDpJlaVtk=");
-  background-size: cover;
+  color: black;
+
 }
 
 h3 {

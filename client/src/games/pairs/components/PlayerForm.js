@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import './public/PlayerForm.css'
 
 class PlayerForm extends Component {
 
@@ -33,12 +34,16 @@ class PlayerForm extends Component {
   render(){
     let existingPlayers = this.props.players.map((player, index) => (
       <div id = "map-players">
-        <li key = {player._id}>
+        <tr>
+        <td key = {player._id}>
           {player.Player}
+        </td>
+        <td>
           <button className="delete-button" onClick={this.handlePlayerDelete} value={player._id}>
-            Delete Button
+            Delete Player
           </button>
-        </li>
+        </td>
+      </tr>
       </div>
     ))
 
@@ -46,17 +51,24 @@ class PlayerForm extends Component {
     return (
       <div id = "create-list">
         <div id = "create">
-          <p>Players page</p>
+          <h1>Players page</h1>
           <form className="create-form" onSubmit={this.handlePlayerAdd}>
             <input type="text" placeholder="Enter User Name" value={this.state.player} onChange={this.handleTextChange}/>
-            <input type="submit" value="Create A Player"/>
+            <input type="submit" value="Create Player"/>
           </form>
         </div>
 
         <div id = "list">
-          <ul>
-            {existingPlayers}
-          </ul>
+          <table>
+            <tbody>
+              <tr>
+                <th>Existing Players</th>
+              </tr>
+              {existingPlayers}
+            </tbody>
+
+          </table>
+
         </div>
       </div>
     ) // end of return
