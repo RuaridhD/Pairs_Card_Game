@@ -1,14 +1,17 @@
 import React, {Component} from 'react'
 import './public/statsBox.css'
+import './PairsTable.js'
 
 class StatsBox extends Component {
 
   render() {
     var playersList = this.props.players.map((player,index) =>(
+
       <tr key={index}>
-        <td>{player}</td>
-        <td>{this.props.turns[player]}</td>
-        <td>{this.props.pairs[player]}</td>
+        <td className="stats-player" value={index}>{player}</td>
+        <td className="stats-player" value={index}>{this.props.turns[player]}</td>
+        <td className="stats-player" value={index}>{this.props.pairs[player]}</td>
+
       </tr>
     ))
     return (

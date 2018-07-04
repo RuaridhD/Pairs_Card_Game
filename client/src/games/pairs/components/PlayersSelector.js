@@ -45,6 +45,12 @@ class PlayersSelector extends Component {
         activePlayers: duplicateArray
       })
     }
+    if (this.state.activePlayers.length === parseInt(this.state.numberOfPlayers, 10)){
+      const addButton = document.querySelector("#add-player-btn")
+      addButton.hidden = true;
+      const startButton = document.querySelector("#start-game-btn")
+      startButton.hidden = false;
+    }
   }
 
   startButtonClicked() {
@@ -64,39 +70,50 @@ class PlayersSelector extends Component {
         }
       })
 
+
       const tableList = this.state.activePlayers.map((player, index) => (
         <tr key={index}>
-          <td >{player}</td>
+          <td className="players-table-data">{player}</td>
         </tr>
       ))
 
       renderPlayers =
-      <div className="players-selector-div">
-        <div>
-          <select id="player-dropdown">
-            <option hidden disabled selected value="$default$">Select a player...</option>
-            {playersList}
-          </select>
+
+      <div id="name-selector-div">
+
+        <div id="players-table-div">
+          <table id="players-table">
+             <tbody>
+            <tr>
+              <th className="players-table-heading">Players</th>
+            </tr>
+            {tableList}
+            </tbody>
+          </table>
         </div>
 
-        <table>
-          <tbody>
-          <tr>
-            <th>Players</th>
-          </tr>
+        <div id="dropdown-and-buttons">
+          <div id="player-dropdown-div">
+            <select id="player-dropdown">
+              <option hidden disabled selected value="$default$">Select a player...</option>
+              {playersList}
+            </select>
+          </div>
 
-          {tableList}
-          </tbody>
-        </table>
-        <button onClick={this.addPlayerToTable}>Add Player</button>
-        <button onClick={this.startButtonClicked}>Start Game</button>
 
+          <div id="name-selector-btn-div">
+            <button id="add-player-btn" className="name-selector-btn" onClick={this.addPlayerToTable}>Add Player</button>
+            <button id="start-game-btn" hidden className="name-selector-btn" onClick={this.startButtonClicked}>Start Game</button>
+          </div>
+        </div>
       </div>
     } else {
       renderPlayers =
-      <div className="players-selector-div">
-        <h2>How many players?</h2>
-        <div className="players-selector-btns-div">
+
+      <div id="number-selector-div">
+        <h2 id="number-heading">How many players?</h2>
+        <div id="players-selector-btns-div">
+
           <button id="1-player" className="players-selector-btn" onClick={this.selectNumberOfPlayers} value="1">1 Player</button>
           <button id="2-players" className="players-selector-btn" onClick={this.selectNumberOfPlayers} value="2">2 Players</button>
           <button id="3-players" className="players-selector-btn" onClick={this.selectNumberOfPlayers} value="3">3 Players</button>

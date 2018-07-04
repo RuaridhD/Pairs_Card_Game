@@ -1,17 +1,17 @@
 button.tile-button {
-  height: 70px;
-  min-height: 70px;
-  width: 45px;
-  min-width: 45px;
-  margin: 8px;
+  height: 5.375em;
+  min-height: 5.375em;
+  width: 3.4em;
+  min-width: 3.4em;
+  margin: 0.500em;
   text-color: white;
   background-image: url("Card.png");
   background-size: 100% 100%;
-  padding-left: 10px;
+  padding-left: 0.625em;
   transition: 1s all;
 }
 
 #tile-div {
-  height: 70px;
-  width: 55px;
+  height: 5.375em;
+  width: 3.4em;
 }
