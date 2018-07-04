@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 0.7fr 1.6fr 0.7fr;
   min-width: 725px;
+  border-bottom: 1px solid black;
 }
 
 #about-heading-div {
@@ -33,7 +34,6 @@
 #container-about-left {
   border-left: 1px solid black;
   border-right: 1px solid black;
-  border-bottom: 1px solid black;
   grid-column-start: 1;
   grid-column-end: span 1;
   display: flex;
@@ -52,7 +52,6 @@
 #container-about-right {
   border-left: 1px solid black;
   border-right: 1px solid black;
-  border-bottom: 1px solid black;
   grid-column-start: 3;
   grid-column-end: span 1;
   display: flex;
