@@ -1,14 +1,22 @@
 body {
   display: flex;
   flex-direction: column;
-  color: black;
-  /* background-image: url("https://media.gettyimages.com/photos/shuffling-cards-picture-id184974614?b=1&k=6&m=184974614&s=612x612&w=0&h=fBH0x7joOqNqAQsWiaMHvLqK3OUYZwX04hpDpJlaVtk="); */
-  /* background-size: cover; */
+  color: white;
+  text-shadow: 1px 1px #ff0000;
+  background-image: url("https://media.gettyimages.com/photos/shuffling-cards-picture-id184974614?b=1&k=6&m=184974614&s=612x612&w=0&h=fBH0x7joOqNqAQsWiaMHvLqK3OUYZwX04hpDpJlaVtk=");
+  background-size: cover;
 }
 
-h1 {
-    display: flex;
-  justify-content: center;
+h3 {
+  display: flex;
+  justify-content: left;
+  /* text-align: left; */
+}
+
+h2 {
+  display: flex;
+  justify-content: left;
+  /* text-align: left; */
 }
 
 #rules {
@@ -27,4 +35,19 @@ h1 {
   align-items: center;
   height: 80%;
   width: 100%;
+}
+
+#play-now-div {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
+
+#play-now {
+  font-family: 'Quicksand', sans-serif;
+  height: 75px;
+  width: 100px;
+  background-color: white;
+  font-size: 16px;
+  color: darkgreen;
 }
