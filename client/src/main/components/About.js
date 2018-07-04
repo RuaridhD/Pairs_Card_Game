@@ -4,7 +4,7 @@ import './public/About.css'
 const About = () => {
   return (
     <div id="body">
-      <h1>JavaScipt Group Project</h1>
+      <h1>JavaScript Group Project</h1>
       <div id="project-brief">
       <p>Create a browser game based on an existing card or dice game. Model the game logic and then display it in the browser for a user to interact with. For this project the team decided to create the classic card game Pairs.
       </p>
