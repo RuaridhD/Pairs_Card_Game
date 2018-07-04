@@ -3,6 +3,7 @@ import './public/About.css'
 
 const About = () => {
   return (
+
     <div id="about-container">
 
       <div id="container-about-left">
@@ -45,12 +46,13 @@ const About = () => {
 <div id="container-about-center">
 
   <div id="about-heading-div">
-    <h1 id="about-heading">JavaScipt Group Project</h1>
+    <h1 id="about-heading">JavaScript Group Project</h1>
   </div>
 
   <div id="project-div">
 
     <div id="project-brief">
+
       <p>Create a browser game based on an existing card or dice game. Model the game logic and then display it in the browser for a user to interact with. For this project the team decided to create the classic card game Pairs.
       </p>
     </div>
@@ -74,9 +76,7 @@ const About = () => {
         </ul>
       </div>
     </div>
-
   </div>
-
 </div>
 
 <div id="container-about-right">

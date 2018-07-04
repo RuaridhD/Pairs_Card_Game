@@ -11,6 +11,7 @@ class PlayerForm extends Component {
 
     this.handlePlayerAdd = this.handlePlayerAdd.bind(this)
     this.handleTextChange = this.handleTextChange.bind(this)
+    this.handlePlayerDelete = this.handlePlayerDelete.bind(this)
   }
 
   handleTextChange(event){
@@ -19,26 +20,32 @@ class PlayerForm extends Component {
 
   handlePlayerAdd(event) {
     event.preventDefault()
-    // console.log('event target value is: ', event.target.value);
-    // console.log(this.state.player)
     const submittedPlayer = this.state.player;
     this.props.onPlayerSubmit({player: submittedPlayer});
+  }
+
+  handlePlayerDelete(event){
+    this.props.onPlayerDelete(event.target.value)
   }
 
 
 
   render(){
-        // console.log(this.props.players);
-
-    let existingPlayers = this.props.players.map(player => (
-      <li key = {player._id}>
-        {player.Player}
-      </li>
+    let existingPlayers = this.props.players.map((player, index) => (
+      <div id = "map-players">
+        <li key = {player._id}>
+          {player.Player}
+          <button className="delete-button" onClick={this.handlePlayerDelete} value={player._id}>
+            Delete Button
+          </button>
+        </li>
+      </div>
     ))
 
+
     return (
-      <div>
-        <div>
+      <div id = "create-list">
+        <div id = "create">
           <p>Players page</p>
           <form className="create-form" onSubmit={this.handlePlayerAdd}>
             <input type="text" placeholder="Enter User Name" value={this.state.player} onChange={this.handleTextChange}/>
@@ -46,9 +53,9 @@ class PlayerForm extends Component {
           </form>
         </div>
 
-        <div>
+        <div id = "list">
           <ul>
-            <li>{existingPlayers}</li>
+            {existingPlayers}
           </ul>
         </div>
       </div>
