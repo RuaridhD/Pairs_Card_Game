@@ -44,6 +44,20 @@ class PlayerContainer extends Component {
         if (!player){
           return
         }
+
+
+
+        let playersList = this.state.players.map(eachPlayer => {
+          return eachPlayer.Player
+        })
+
+
+        if(playersList.includes(player)){
+          alert("This player name is already in use!")
+          return
+        }
+
+
         const url = 'http://localhost:3001/api/users'
 
         fetch(url, {
