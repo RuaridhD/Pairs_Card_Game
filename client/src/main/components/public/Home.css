@@ -8,13 +8,14 @@ body {
 h3 {
   display: flex;
   justify-content: left;
+  font-size: 30px;
   /* text-align: left; */
 }
 
 h2 {
   display: flex;
   justify-content: left;
-  /* text-align: left; */
+  font-size: 46px;
 }
 
 #rules {
@@ -33,6 +34,7 @@ h2 {
   align-items: center;
   height: 80%;
   width: 100%;
+  font-size: 20px;
 }
 
 #play-now-div {
@@ -46,6 +48,6 @@ h2 {
   height: 75px;
   width: 100px;
   background-color: white;
-  font-size: 16px;
+  font-size: 20px;
   color: darkgreen;
 }
