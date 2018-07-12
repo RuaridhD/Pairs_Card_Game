@@ -1,0 +1,17 @@
+#stats-box {
+  color: white;
+}
+
+#stats-heading {
+  text-align: center;
+  color: white;
+}
+
+.stats-table-heading {
+  color: white;
+  font-size: 1.25em;
+}
+
+#player-0, #player-1, #player-2, #player-3{
+  color: gold;
+}

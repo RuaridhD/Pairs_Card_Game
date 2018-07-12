@@ -1,0 +1,74 @@
+#pairs-table-container {
+  display: grid;
+  grid-template-columns: 0.7fr 1.6fr 0.7fr;
+  background-color: darkgreen;
+  min-height: 31.250em;
+  /* min-width: 45.313em; */
+}
+
+#container-table-center {
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  /* background-image: url(./table2.jpg);
+  background-size: cover; */
+  min-width: 45.313em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+  color: white;
+  padding-left: 15px;
+  padding-right: 10px;
+  border-bottom: 1px solid black;
+}
+
+#container-table-left {
+  border-right: 1px solid white;
+  border-left: 1px solid black;
+  grid-column-start: 1;
+  grid-column-end: span 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#container-table-left-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#container-table-right {
+  border-right: 1px solid black;
+  border-left: 1px solid white;
+  grid-column-start: 3;
+  grid-column-end: span 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#container-table-right-elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#reset-button-div {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 0.625em;
+}
+
+.reset-button {
+  font-family: 'Quicksand', sans-serif;
+  height: 4.688em;
+  width: 6.25em;
+  background-color: white;
+  font-size: 1em;
+  color: darkgreen;
+}
+
+#player-0, #player-1, #player-2, #player-3{
+  color: gold;
+}

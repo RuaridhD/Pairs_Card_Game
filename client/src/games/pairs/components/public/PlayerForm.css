@@ -1,0 +1,36 @@
+
+
+#create-list {
+  display: flex;
+  flex-flow: column;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+#list {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+  padding: 50px;
+}
+
+td {
+padding: 8px;
+margin: 10px;
+text-align: left;
+font-size: 30px;
+}
+
+th {
+  padding: 8px;
+  font-size: 40px;
+}
+
+h1 {
+  text-align: left;
+  font-size: 46px;
+
+}

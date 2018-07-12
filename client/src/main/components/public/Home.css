@@ -1,0 +1,53 @@
+body {
+  display: flex;
+  flex-direction: column;
+  color: black;
+
+}
+
+h3 {
+  display: flex;
+  justify-content: left;
+  font-size: 30px;
+  /* text-align: left; */
+}
+
+h2 {
+  display: flex;
+  justify-content: left;
+  font-size: 46px;
+}
+
+#rules {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+}
+
+#rules-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+  font-size: 20px;
+}
+
+#play-now-div {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
+
+#play-now {
+  font-family: 'Quicksand', sans-serif;
+  height: 75px;
+  width: 100px;
+  background-color: white;
+  font-size: 20px;
+  color: darkgreen;
+}

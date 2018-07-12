@@ -1,0 +1,29 @@
+ul.navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
+
+ul.navbar-list li {float: left;}
+
+ul.navbar-list li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 2em;
+    text-decoration: none;
+}
+
+ul.navbar-list li a:hover:not(.active) {
+  background-color: black;
+  color: white;
+}
+
+@media screen and (max-width: 600px){
+    ul.navbar-list,
+    ul.navbar-list li {float: none;}
+}
